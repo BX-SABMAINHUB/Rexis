@@ -46,6 +46,12 @@
             -moz-osx-font-smoothing: grayscale;
             position: relative;
             min-height: 100vh;
+            animation: bodyFadeIn 1.2s ease-out;
+        }
+
+        @keyframes bodyFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         body::before {
@@ -73,16 +79,9 @@
             animation: floatBg 25s ease-in-out infinite reverse;
         }
         @keyframes floatBg {
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-            33% {
-                transform: translate(60px, -40px);
-            }
-            66% {
-                transform: translate(-30px, 50px);
-            }
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(60px, -40px); }
+            66% { transform: translate(-30px, 50px); }
         }
 
         .container {
@@ -108,6 +107,11 @@
             z-index: 1000;
             border-radius: 0 0 var(--radius) var(--radius);
             margin-bottom: 10px;
+            animation: slideDownNav 0.8s ease-out;
+        }
+        @keyframes slideDownNav {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .nav-logo {
             font-size: 2rem;
@@ -119,6 +123,12 @@
             background-clip: text;
             cursor: pointer;
             transition: var(--transition);
+            animation: logoPop 0.6s ease-out 0.2s both;
+        }
+        @keyframes logoPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
         }
         .nav-logo:hover {
             filter: brightness(1.2);
@@ -137,11 +147,18 @@
             transition: var(--transition);
             box-shadow: 0 4px 18px rgba(108, 92, 231, 0.4);
             white-space: nowrap;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 4px 18px rgba(108,92,231,0.4); }
+            50% { box-shadow: 0 8px 30px rgba(108,92,231,0.7); }
+            100% { box-shadow: 0 4px 18px rgba(108,92,231,0.4); }
         }
         .nav-cta:hover {
             background: #7d6ff0;
             box-shadow: 0 6px 26px rgba(108, 92, 231, 0.6);
             transform: translateY(-2px);
+            animation: none;
         }
 
         /* HERO */
@@ -194,13 +211,17 @@
             border: none;
             transition: var(--transition);
             box-shadow: 0 8px 35px rgba(108, 92, 231, 0.5);
-            animation: fadeInUp 1s ease-out 0.45s both;
+            animation: fadeInUp 1s ease-out 0.45s both, heroBtnGlow 2.5s ease-in-out infinite;
             position: relative;
             overflow: hidden;
         }
+        @keyframes heroBtnGlow {
+            0%, 100% { box-shadow: 0 8px 35px rgba(108,92,231,0.5); }
+            50% { box-shadow: 0 12px 45px rgba(108,92,231,0.8); }
+        }
         .hero-btn:hover {
             box-shadow: 0 12px 45px rgba(108, 92, 231, 0.7);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.03);
             filter: brightness(1.1);
         }
         .hero-btn::after {
@@ -216,17 +237,16 @@
         }
         .hero-btn:hover::after {
             opacity: 1;
+            animation: shimmer 1s ease-out;
+        }
+        @keyframes shimmer {
+            0% { transform: translate(-30%, -30%) rotate(0deg); }
+            100% { transform: translate(30%, 30%) rotate(90deg); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* SECCIONES */
@@ -258,6 +278,11 @@
             overflow: hidden;
             max-width: 900px;
             margin: 0 auto;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .chart-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
         }
         .chart-wrapper::before {
             content: '';
@@ -268,6 +293,11 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--accent2), transparent);
             opacity: 0.6;
+            animation: scanLine 3s ease-in-out infinite;
+        }
+        @keyframes scanLine {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
         canvas {
             display: block;
@@ -281,6 +311,7 @@
             font-size: 0.9rem;
             margin-top: 10px;
             letter-spacing: 1px;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         /* PLANES */
@@ -301,15 +332,24 @@
             position: relative;
             box-shadow: var(--shadow);
             overflow: hidden;
+            animation: fadeInUp 0.8s ease-out both;
         }
+        .plan-card:nth-child(1) { animation-delay: 0.1s; }
+        .plan-card:nth-child(2) { animation-delay: 0.2s; }
+        .plan-card:nth-child(3) { animation-delay: 0.3s; }
         .plan-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
             box-shadow: var(--shadow-glow);
             border-color: var(--accent);
         }
         .plan-card.popular {
             border: 2px solid var(--gold);
             box-shadow: 0 0 40px rgba(249, 168, 37, 0.2);
+            animation: popularPulse 2s infinite alternate;
+        }
+        @keyframes popularPulse {
+            0% { box-shadow: 0 0 20px rgba(249,168,37,0.2); }
+            100% { box-shadow: 0 0 50px rgba(249,168,37,0.4); }
         }
         .plan-badge {
             position: absolute;
@@ -323,6 +363,11 @@
             border-radius: 50px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            animation: badgeBounce 2s ease-in-out infinite;
+        }
+        @keyframes badgeBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         .plan-resenas {
             font-size: 3.5rem;
@@ -359,6 +404,10 @@
             border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
             color: var(--text2);
+            transition: color 0.3s;
+        }
+        .plan-features li:hover {
+            color: #fff;
         }
         .plan-features li::before {
             content: '✓ ';
@@ -379,10 +428,13 @@
             border: none;
             font-size: 0.95rem;
             letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
         }
         .plan-cta:hover {
             background: #7d6ff0;
             box-shadow: 0 6px 25px rgba(108, 92, 231, 0.5);
+            transform: translateY(-2px);
         }
         .plan-cta.gold {
             background: linear-gradient(135deg, var(--gold), #fbc02d);
@@ -392,6 +444,9 @@
         .plan-cta.gold:hover {
             box-shadow: 0 10px 35px rgba(249, 168, 37, 0.6);
             filter: brightness(1.05);
+        }
+        .plan-cta:active {
+            transform: scale(0.96);
         }
 
         .custom-plan {
@@ -404,6 +459,12 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .custom-plan:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-glow);
         }
         .custom-plan h3 {
             font-size: 1.5rem;
@@ -419,6 +480,12 @@
             font-size: 1.8rem;
             color: #fff;
             letter-spacing: -1px;
+            display: inline-block;
+            animation: priceHighlight 3s ease-in-out infinite;
+        }
+        @keyframes priceHighlight {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); color: var(--gold2); }
         }
 
         /* RESEÑAS */
@@ -437,10 +504,15 @@
             position: relative;
             transition: var(--transition);
             box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease-out both;
         }
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.2s; }
+        .review-card:nth-child(3) { animation-delay: 0.3s; }
         .review-card:hover {
             border-color: var(--accent);
             box-shadow: var(--shadow-glow);
+            transform: translateY(-4px) scale(1.01);
         }
         .review-stars {
             color: var(--gold);
@@ -479,11 +551,16 @@
             transition: var(--transition);
             font-size: 1rem;
             letter-spacing: 0.5px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
         .btn-ver-mas:hover {
             background: var(--accent);
             color: #fff;
             box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+            transform: scale(1.03);
+        }
+        .btn-ver-mas:active {
+            transform: scale(0.97);
         }
 
         /* CONTACTO */
@@ -496,6 +573,11 @@
             max-width: 700px;
             margin: 0 auto;
             box-shadow: var(--shadow);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .contact-section:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-3px);
         }
         .contact-section h3 {
             font-size: 1.8rem;
@@ -523,6 +605,11 @@
             letter-spacing: 0.5px;
             box-shadow: 0 6px 25px rgba(108, 92, 231, 0.5);
             text-decoration: none;
+            animation: pulseChat 2s infinite;
+        }
+        @keyframes pulseChat {
+            0%, 100% { box-shadow: 0 6px 25px rgba(108,92,231,0.5); }
+            50% { box-shadow: 0 12px 40px rgba(108,92,231,0.8); }
         }
         .btn-chat:hover {
             background: #7d6ff0;
@@ -557,10 +644,16 @@
             transition: var(--transition);
             position: relative;
             z-index: 2001;
+            animation: floatBubble 3s ease-in-out infinite;
+        }
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
         .chat-bubble-btn:hover {
             transform: scale(1.08);
             box-shadow: 0 12px 35px rgba(108, 92, 231, 0.7);
+            animation: none;
         }
         .mis-chats-btn {
             background: var(--card);
@@ -578,10 +671,12 @@
         }
         .mis-chats-btn.visible {
             display: inline-block;
+            animation: fadeInUp 0.4s ease-out;
         }
         .mis-chats-btn:hover {
             background: var(--accent);
             border-color: var(--accent);
+            transform: scale(1.05);
         }
         .chat-window {
             position: fixed;
@@ -605,14 +700,8 @@
             display: flex;
         }
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .chat-header {
             background: var(--accent);
@@ -637,7 +726,7 @@
         }
         .chat-close:hover {
             opacity: 0.7;
-            transform: scale(1.1);
+            transform: scale(1.2) rotate(90deg);
         }
         .chat-messages {
             flex: 1;
@@ -658,14 +747,8 @@
             animation: msgIn 0.25s ease-out;
         }
         @keyframes msgIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .chat-message.admin {
             align-self: flex-start;
@@ -714,6 +797,7 @@
         }
         .chat-input-area button:hover {
             background: #7d6ff0;
+            transform: scale(1.05);
         }
         .chat-auto-msg {
             text-align: center;
@@ -741,6 +825,12 @@
         .admin-trigger:hover {
             opacity: 0.5;
             background: rgba(255, 255, 255, 0.06);
+            animation: triggerWiggle 0.5s ease;
+        }
+        @keyframes triggerWiggle {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-8deg); }
+            75% { transform: rotate(8deg); }
         }
         .admin-modal {
             position: fixed;
@@ -754,6 +844,11 @@
         }
         .admin-modal.open {
             display: flex;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .admin-panel {
             background: var(--bg2);
@@ -765,6 +860,11 @@
             max-height: 85vh;
             overflow-y: auto;
             box-shadow: var(--shadow-glow);
+            animation: slideUpModal 0.4s ease-out;
+        }
+        @keyframes slideUpModal {
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
         .admin-panel h2 {
             color: #fff;
@@ -784,6 +884,7 @@
             flex-wrap: wrap;
             gap: 10px;
             transition: var(--transition);
+            animation: fadeInUp 0.4s ease-out both;
         }
         .admin-chat-item:hover {
             border-color: var(--accent);
@@ -829,7 +930,10 @@
         }
         .admin-chat-item button:hover {
             filter: brightness(1.15);
-            transform: scale(1.03);
+            transform: scale(1.05);
+        }
+        .admin-chat-item button:active {
+            transform: scale(0.95);
         }
         .admin-close {
             display: block;
@@ -845,6 +949,7 @@
         }
         .admin-close:hover {
             background: #555;
+            transform: scale(1.03);
         }
         .admin-password-input {
             display: flex;
@@ -862,6 +967,11 @@
             color: #fff;
             font-size: 0.9rem;
             outline: none;
+            transition: var(--transition);
+        }
+        .admin-password-input input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
         }
         .admin-password-input button {
             padding: 12px 24px;
@@ -872,6 +982,10 @@
             cursor: pointer;
             font-weight: 700;
             transition: var(--transition);
+        }
+        .admin-password-input button:hover {
+            background: #7d6ff0;
+            transform: scale(1.03);
         }
 
         /* RESPONSIVE */
@@ -908,6 +1022,17 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Nuevas animaciones para scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -932,7 +1057,7 @@
     <!-- GRÁFICA -->
     <section class="section" id="grafica">
         <h2 class="section-title">Crecimiento real con nuestras reseñas</h2>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper animate-on-scroll">
             <canvas id="growthChart" aria-label="Gráfica de crecimiento empresarial"></canvas>
             <p class="chart-label">📈 Proyección de impacto tras implementar reseñas verificadas</p>
         </div>
@@ -942,7 +1067,7 @@
     <section class="section" id="planes">
         <h2 class="section-title">Nuestros planes</h2>
         <div class="plans-grid">
-            <div class="plan-card">
+            <div class="plan-card animate-on-scroll">
                 <div class="plan-resenas">10 <span>reseñas</span></div>
                 <div class="plan-price">24,99€</div>
                 <ul class="plan-features">
@@ -953,7 +1078,7 @@
                 </ul>
                 <a href="#contacto" class="plan-cta">Contratar</a>
             </div>
-            <div class="plan-card popular">
+            <div class="plan-card popular animate-on-scroll">
                 <div class="plan-badge">Más popular</div>
                 <div class="plan-resenas">30 <span>reseñas</span></div>
                 <div class="plan-price">74,99€</div>
@@ -966,7 +1091,7 @@
                 </ul>
                 <a href="#contacto" class="plan-cta gold">Contratar</a>
             </div>
-            <div class="plan-card">
+            <div class="plan-card animate-on-scroll">
                 <div class="plan-resenas">50 <span>reseñas</span></div>
                 <div class="plan-price">124,99€</div>
                 <ul class="plan-features">
@@ -980,7 +1105,7 @@
                 <a href="#contacto" class="plan-cta">Contratar</a>
             </div>
         </div>
-        <div class="custom-plan">
+        <div class="custom-plan animate-on-scroll">
             <h3><span class="price-highlight">2,5€</span> por reseña</h3>
             <p>Contáctenos para crear su propio plan personalizado</p>
             <a href="#contacto" class="btn-chat" style="margin-top:16px;">Solicitar plan a medida</a>
@@ -999,12 +1124,11 @@
     <!-- CONTACTO -->
     <section class="section" id="contacto">
         <h2 class="section-title">Contáctenos</h2>
-        <div class="contact-section">
+        <div class="contact-section animate-on-scroll">
             <h3>¿Listo para impulsar tu negocio?</h3>
             <p>Estamos aquí para ayudarte a crecer con reseñas auténticas y efectivas.</p>
             <p class="hours">🟢 Atención al cliente: Disponible 24/7 — Siempre operativo</p>
             <button class="btn-chat" onclick="openChatWidget()">💬 Chat</button>
-            <p style="margin-top:14px;color:var(--text2);font-size:0.85rem;">También puede escribirnos a <strong style="color:#fff;">contacto@rexisreviews.com</strong></p>
         </div>
     </section>
 
@@ -1198,8 +1322,41 @@
             window.addEventListener('load', () => {
                 drawChart();
                 setTimeout(drawChart, 300);
+                // Iniciar animaciones de scroll
+                setupScrollAnimations();
             });
             window.addEventListener('resize', drawChart);
+
+            // ============ ANIMACIONES DE SCROLL ============
+            function setupScrollAnimations() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.15 });
+                elements.forEach(el => observer.observe(el));
+                // También añadir clase visible a los que ya están visibles al cargar
+                window.addEventListener('scroll', () => {
+                    elements.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 50 && rect.bottom > 0) {
+                            el.classList.add('visible');
+                        }
+                    });
+                });
+                // Disparar una vez al cargar
+                setTimeout(() => {
+                    elements.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 50 && rect.bottom > 0) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 200);
+            }
 
             // ============ RESEÑAS ============
             const allReviews = [
@@ -1238,10 +1395,11 @@
                 const btn = document.getElementById('btnVerMas');
                 const visibleCount = showAll ? allReviews.length : 3;
                 container.innerHTML = '';
-                allReviews.slice(0, visibleCount).forEach(r => {
+                allReviews.slice(0, visibleCount).forEach((r, index) => {
                     const starsStr = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
                     const card = document.createElement('div');
-                    card.className = 'review-card';
+                    card.className = 'review-card animate-on-scroll';
+                    card.style.animationDelay = (index * 0.1) + 's';
                     card.innerHTML = `
                 <div class="review-stars">${starsStr}</div>
                 <p class="review-text">"${r.text}"</p>
@@ -1256,6 +1414,8 @@
                     btn.style.display = 'block';
                     btn.textContent = 'Ver más reseñas';
                 }
+                // Reactivar animaciones de scroll para las nuevas tarjetas
+                setupScrollAnimations();
             }
 
             window.toggleReviews = function() {
@@ -1344,11 +1504,7 @@
 
             function appendMessageToChat(sender, text, scroll = true) {
                 const messagesDiv = document.getElementById('chatMessages');
-                // Quitar mensaje automático si hay mensajes reales
                 const autoMsg = messagesDiv.querySelector('.chat-auto-msg');
-                if (autoMsg && messagesDiv.querySelectorAll('.chat-message').length === 0) {
-                    // mantenemos el auto msg hasta que haya mensajes reales
-                }
                 const div = document.createElement('div');
                 div.className = 'chat-message ' + (sender === 'admin' ? 'admin' : 'user');
                 div.textContent = text;
@@ -1356,7 +1512,6 @@
                 if (scroll) {
                     messagesDiv.scrollTop = messagesDiv.scrollHeight;
                 }
-                // Si hay mensajes reales, ocultar auto msg
                 if (messagesDiv.querySelectorAll('.chat-message').length > 0 && autoMsg) {
                     autoMsg.style.display = 'none';
                 }
@@ -1450,8 +1605,7 @@
                     Object.keys(chats).forEach(chatId => {
                         const chat = chats[chatId];
                         const meta = chat.meta || {};
-                        if (meta.status === 'resolved' || meta.status === 'archived') return; // solo activos por defecto, pero mostramos todos con filtro
-                        // Mostramos todos menos los borrados (los borrados se eliminan físicamente)
+                        if (meta.status === 'resolved' || meta.status === 'archived') return;
                         const status = meta.status || 'active';
                         const item = document.createElement('div');
                         item.className = 'admin-chat-item';
@@ -1477,7 +1631,6 @@
             }
 
             window.adminOpenChat = function(chatId) {
-                // Cerrar modal y abrir ese chat en el widget como admin
                 adminModal.classList.remove('open');
                 if (adminChatListener) {
                     db.ref('chats').off('value', adminChatListener);
@@ -1488,7 +1641,6 @@
                 document.getElementById('misChatsBtn').classList.add('visible');
                 document.getElementById('chatWindow').classList.add('open');
                 listenToChat(chatId);
-                // Asegurar que existe
                 db.ref('chats/' + chatId + '/meta').once('value').then(snap => {
                     if (!snap.exists()) {
                         db.ref('chats/' + chatId + '/meta').set({
@@ -1532,7 +1684,6 @@
                 }
             };
 
-            // Cerrar modal admin al hacer clic fuera
             adminModal.addEventListener('click', function(e) {
                 if (e.target === adminModal) {
                     closeAdminPanel();
@@ -1540,8 +1691,6 @@
             });
 
             // ============ ADMIN ENVIAR MENSAJE COMO ADMIN ============
-            // Extender sendMessage para que si estamos en panel admin podamos enviar como admin
-            const originalSendMessage = window.sendMessage;
             window.sendMessage = function() {
                 const input = document.getElementById('chatInput');
                 const text = input.value.trim();
@@ -1551,11 +1700,6 @@
                     localStorage.setItem('rexis_current_chat_id', currentChatId);
                     listenToChat(currentChatId);
                 }
-                // Si el admin está logueado y quiere enviar como admin, usamos un truco:
-                // Si se pulsa Ctrl+Shift al enviar, manda como admin. Pero por simplicidad,
-                // desde el panel admin al abrir un chat, el admin puede escribir en el input
-                // y se enviará como 'user' a menos que usemos un modificador.
-                // Vamos a detectar si el admin abrió el chat desde el panel: guardamos una flag.
                 const msgRef = db.ref('chats/' + currentChatId + '/messages').push();
                 const senderType = (window._adminSendingAsAdmin) ? 'admin' : 'user';
                 msgRef.set({
@@ -1575,14 +1719,11 @@
                 window._adminSendingAsAdmin = false;
             };
 
-            // Cuando el admin abre un chat desde el panel, configuramos para que sus mensajes sean como admin
             const origAdminOpenChat = window.adminOpenChat;
             window.adminOpenChat = function(chatId) {
                 window._adminSendingAsAdmin = true;
                 origAdminOpenChat(chatId);
-                // Cambiar el placeholder del input para indicar que es admin
                 document.getElementById('chatInput').placeholder = 'Escribe como Administrador...';
-                // Al cerrar, restaurar
                 const origClose = closeChatWidget;
                 closeChatWidget = function() {
                     window._adminSendingAsAdmin = false;
@@ -1596,21 +1737,17 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Al cargar la página, si había un chat abierto, restaurarlo
             window.addEventListener('load', () => {
                 const savedChatId = localStorage.getItem('rexis_current_chat_id');
                 if (savedChatId) {
                     document.getElementById('misChatsBtn').classList.add('visible');
-                    // No abrimos automáticamente, pero el botón está visible
                 }
-                // Verificar si hay chats activos para este usuario
-                db.ref('chats').orderByChild('meta/userId').equalTo(userId).once('value').then(
-                snap => {
+                db.ref('chats').orderByChild('meta/userId').equalTo(userId).once('value').then(snap => {
                     if (snap.exists()) {
                         document.getElementById('misChatsBtn').classList.add('visible');
                         const chats = snap.val();
-                        const activeChat = Object.keys(chats).find(k => chats[k].meta && chats[k]
-                            .meta.status === 'active');
+                        const activeChat = Object.keys(chats).find(k => chats[k].meta && chats[k].meta
+                            .status === 'active');
                         if (activeChat && !savedChatId) {
                             localStorage.setItem('rexis_current_chat_id', activeChat);
                         }
@@ -1618,7 +1755,6 @@
                 });
             });
 
-            // ============ EXPORTAR FUNCIONES GLOBALES ============
             window.openChatWidget = openChatWidget;
             window.closeChatWidget = closeChatWidget;
             window.openMisChats = openMisChats;
