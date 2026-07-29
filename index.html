@@ -803,6 +803,20 @@
             line-height: 1.5;
             word-wrap: break-word;
             animation: msgIn 0.25s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message .sender-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            opacity: 0.7;
+        }
+        .chat-message img {
+            max-width: 200px;
+            border-radius: 12px;
+            margin-top: 6px;
         }
         @keyframes msgIn {
             from {
@@ -820,11 +834,17 @@
             color: #e0e0e0;
             border-bottom-left-radius: 6px;
         }
+        .chat-message.admin .sender-label {
+            color: #aaa;
+        }
         .chat-message.user {
             align-self: flex-end;
             background: var(--white);
             color: #000;
             border-bottom-right-radius: 6px;
+        }
+        .chat-message.user .sender-label {
+            color: #555;
         }
         .chat-input-area {
             display: flex;
@@ -832,8 +852,9 @@
             gap: 8px;
             border-top: 1px solid var(--border);
             background: var(--bg2);
+            align-items: center;
         }
-        .chat-input-area input {
+        .chat-input-area input[type="text"] {
             flex: 1;
             padding: 10px 16px;
             border-radius: 50px;
@@ -844,7 +865,7 @@
             outline: none;
             transition: var(--transition);
         }
-        .chat-input-area input:focus {
+        .chat-input-area input[type="text"]:focus {
             border-color: var(--lightgray);
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
         }
@@ -852,15 +873,32 @@
             background: var(--white);
             border: none;
             color: #000;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 50px;
             cursor: pointer;
             font-weight: 700;
             transition: var(--transition);
+            white-space: nowrap;
         }
         .chat-input-area button:hover {
             background: #dddddd;
             transform: scale(1.04);
+        }
+        .attach-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .attach-btn:hover {
+            background: #222;
         }
         .chat-auto-msg {
             text-align: center;
@@ -1257,6 +1295,8 @@
         </div>
         <div class="chat-input-area">
             <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter')sendMessage()" />
+            <button class="attach-btn" id="attachBtn" title="Adjuntar imagen">📎</button>
+            <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="sendImage()" />
             <button onclick="sendMessage()">Enviar</button>
         </div>
     </div>
@@ -1557,6 +1597,7 @@
                         const autoMsgRef = db.ref('chats/' + currentChatId + '/messages').push();
                         autoMsgRef.set({
                             sender: 'admin',
+                            type: 'text',
                             text: '🟢 Atención al cliente disponible, te atenderán lo más rápido posible. ¿En qué podemos ayudarte?',
                             timestamp: firebase.database.ServerValue.TIMESTAMP
                         });
@@ -1586,20 +1627,36 @@
                     snap => {
                         const msg = snap.val();
                         if (msg) {
-                            appendMessageToChat(msg.sender, msg.text, false);
+                            appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', false);
                         }
                     });
                 currentChatId = chatId;
                 localStorage.setItem('rexis_current_chat_id', chatId);
             }
 
-            function appendMessageToChat(sender, text, scroll = true) {
+            function appendMessageToChat(sender, type, text, imageData, scroll = true) {
                 const messagesDiv = document.getElementById('chatMessages');
                 const autoMsg = messagesDiv.querySelector('.chat-auto-msg');
-                const div = document.createElement('div');
-                div.className = 'chat-message ' + (sender === 'admin' ? 'admin' : 'user');
-                div.textContent = text;
-                messagesDiv.appendChild(div);
+                const wrapper = document.createElement('div');
+                wrapper.className = 'chat-message ' + (sender === 'admin' ? 'admin' : 'user');
+                
+                const label = document.createElement('span');
+                label.className = 'sender-label';
+                label.textContent = sender === 'admin' ? 'Admin' : 'Tú';
+                wrapper.appendChild(label);
+                
+                if (type === 'image' && imageData) {
+                    const img = document.createElement('img');
+                    img.src = imageData;
+                    img.alt = 'Imagen enviada';
+                    wrapper.appendChild(img);
+                } else {
+                    const content = document.createElement('span');
+                    content.textContent = text;
+                    wrapper.appendChild(content);
+                }
+                
+                messagesDiv.appendChild(wrapper);
                 if (scroll) {
                     messagesDiv.scrollTop = messagesDiv.scrollHeight;
                 }
@@ -1607,6 +1664,43 @@
                     autoMsg.style.display = 'none';
                 }
             }
+
+            // Función para enviar imagen
+            window.sendImage = function() {
+                const fileInput = document.getElementById('imageInput');
+                const file = fileInput.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    if (!currentChatId) {
+                        currentChatId = getOrCreateChatId();
+                        localStorage.setItem('rexis_current_chat_id', currentChatId);
+                        listenToChat(currentChatId);
+                    }
+                    const senderType = (window._adminSendingAsAdmin) ? 'admin' : 'user';
+                    const msgRef = db.ref('chats/' + currentChatId + '/messages').push();
+                    msgRef.set({
+                        sender: senderType,
+                        type: 'image',
+                        imageData: imageData,
+                        text: '',
+                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                    }).then(() => {
+                        db.ref('chats/' + currentChatId + '/meta').update({
+                            lastMessage: '📷 Imagen',
+                            lastTimestamp: firebase.database.ServerValue.TIMESTAMP,
+                            status: 'active'
+                        });
+                    });
+                    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+                    document.getElementById('misChatsBtn').classList.add('visible');
+                    // Limpiar input file
+                    fileInput.value = '';
+                };
+                reader.readAsDataURL(file);
+            };
 
             window.sendMessage = function() {
                 const input = document.getElementById('chatInput');
@@ -1621,7 +1715,9 @@
                 const senderType = (window._adminSendingAsAdmin) ? 'admin' : 'user';
                 msgRef.set({
                     sender: senderType,
+                    type: 'text',
                     text: text,
+                    imageData: '',
                     timestamp: firebase.database.ServerValue.TIMESTAMP
                 }).then(() => {
                     db.ref('chats/' + currentChatId + '/meta').update({
@@ -1640,6 +1736,11 @@
             window.openMisChats = function() {
                 openChatWidget();
             };
+
+            // Evento para el botón de adjuntar
+            document.getElementById('attachBtn').addEventListener('click', () => {
+                document.getElementById('imageInput').click();
+            });
 
             // ============ ADMIN ============
             const adminTrigger = document.getElementById('adminTrigger');
