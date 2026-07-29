@@ -811,12 +811,17 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             margin-bottom: 4px;
-            opacity: 0.7;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            width: fit-content;
         }
         .chat-message img {
             max-width: 200px;
             border-radius: 12px;
             margin-top: 6px;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 8px rgba(255,255,255,0.1);
         }
         @keyframes msgIn {
             from {
@@ -830,21 +835,23 @@
         }
         .chat-message.admin {
             align-self: flex-start;
-            background: #222;
-            color: #e0e0e0;
+            background: #2a2a2a;
+            color: #f0f0f0;
             border-bottom-left-radius: 6px;
         }
         .chat-message.admin .sender-label {
-            color: #aaa;
+            background: #3a3a3a;
+            color: #fff;
         }
         .chat-message.user {
             align-self: flex-end;
-            background: var(--white);
+            background: #e0e0e0;
             color: #000;
             border-bottom-right-radius: 6px;
         }
         .chat-message.user .sender-label {
-            color: #555;
+            background: #ffffff;
+            color: #000;
         }
         .chat-input-area {
             display: flex;
@@ -886,19 +893,22 @@
         }
         .attach-btn {
             background: transparent;
-            border: 1px solid var(--border);
-            color: #fff;
-            font-size: 1.2rem;
-            padding: 8px 12px;
-            border-radius: 50%;
+            border: 2px solid var(--lightgray);
+            color: var(--lightgray);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 4px;
+            white-space: nowrap;
         }
         .attach-btn:hover {
-            background: #222;
+            background: var(--lightgray);
+            color: #000;
         }
         .chat-auto-msg {
             text-align: center;
@@ -1295,7 +1305,7 @@
         </div>
         <div class="chat-input-area">
             <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter')sendMessage()" />
-            <button class="attach-btn" id="attachBtn" title="Adjuntar imagen">📎</button>
+            <button class="attach-btn" id="attachBtn" title="Adjuntar imagen">🖼️ Imagen</button>
             <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="sendImage()" />
             <button onclick="sendMessage()">Enviar</button>
         </div>
@@ -1696,7 +1706,6 @@
                     });
                     document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
                     document.getElementById('misChatsBtn').classList.add('visible');
-                    // Limpiar input file
                     fileInput.value = '';
                 };
                 reader.readAsDataURL(file);
