@@ -93,7 +93,7 @@
         }
         .nav-cta:hover { background: #ddd; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.2); }
 
-        /* ===== GOOGLE BUTTON (esquina superior derecha) ===== */
+        /* ===== GOOGLE BUTTON ===== */
         .google-auth-btn {
             position: fixed;
             top: 18px;
@@ -118,9 +118,7 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 28px rgba(0,0,0,0.35);
         }
-        .google-auth-btn img {
-            width: 18px; height: 18px;
-        }
+        .google-auth-btn img { width: 18px; height: 18px; }
         .google-auth-btn.logged {
             background: var(--card);
             color: #fff;
@@ -311,18 +309,35 @@
         .chat-message {
             max-width: 80%; padding: 10px 16px; border-radius: 20px; font-size: 0.9rem; line-height: 1.5;
             word-wrap: break-word; animation: msgIn 0.25s ease-out; display: flex; flex-direction: column;
+            cursor: pointer; transition: outline 0.2s;
         }
+        .chat-message:hover { outline: 1px solid rgba(255,255,255,0.15); }
+        .chat-message.selected-for-reply { outline: 2px solid var(--lightgray); }
         .chat-message .sender-label {
             font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px;
             padding: 2px 8px; border-radius: 12px; display: inline-block; width: fit-content;
         }
         .chat-message img { max-width: 200px; border-radius: 12px; margin-top: 6px; border: 1px solid var(--border); box-shadow: 0 0 8px rgba(255,255,255,0.1); }
+        .chat-message .reply-quote {
+            background: rgba(255,255,255,0.08);
+            border-left: 3px solid var(--lightgray);
+            padding: 6px 10px;
+            margin-bottom: 6px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.78rem;
+            color: var(--text2);
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         .chat-message.admin { align-self: flex-start; background: #2a2a2a; color: #f0f0f0; border-bottom-left-radius: 6px; }
         .chat-message.admin .sender-label { background: #3a3a3a; color: #fff; }
         .chat-message.user { align-self: flex-end; background: #e0e0e0; color: #000; border-bottom-right-radius: 6px; }
         .chat-message.user .sender-label { background: #fff; color: #000; }
-        .chat-input-area { display: flex; padding: 12px; gap: 8px; border-top: 1px solid var(--border); background: var(--bg2); align-items: center; }
+        .chat-input-area { display: flex; flex-direction: column; padding: 12px; gap: 8px; border-top: 1px solid var(--border); background: var(--bg2); }
+        .chat-input-row { display: flex; gap: 8px; align-items: center; }
         .chat-input-area input[type="text"] {
             flex: 1; padding: 10px 16px; border-radius: 50px; border: 1px solid var(--border);
             background: #1a1a1a; color: #fff; font-size: 0.9rem; outline: none; transition: var(--transition);
@@ -340,6 +355,36 @@
         }
         .attach-btn:hover { background: var(--lightgray); color: #000; }
         .chat-auto-msg { text-align: center; color: var(--text2); font-size: 0.8rem; padding: 8px; font-style: italic; }
+
+        /* Barra de respuesta */
+        .reply-bar {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: #1f1f1f;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            color: var(--text2);
+        }
+        .reply-bar.visible { display: flex; }
+        .reply-bar .reply-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .reply-bar .reply-cancel {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0 4px;
+            opacity: 0.7;
+        }
+        .reply-bar .reply-cancel:hover { opacity: 1; }
 
         /* ===== ADMIN ===== */
         .admin-trigger {
@@ -430,7 +475,7 @@
 </head>
 <body>
 
-    <!-- ===== BOTÓN GOOGLE (esquina superior derecha) ===== -->
+    <!-- ===== BOTÓN GOOGLE ===== -->
     <button class="google-auth-btn" id="googleAuthBtn" onclick="handleGoogleAuth()">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
         <span id="googleBtnText">Iniciar con Google</span>
@@ -576,10 +621,16 @@
             <div class="chat-auto-msg">🟢 Atención al cliente disponible, te atenderán lo más rápido posible.</div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter')sendMessage()" />
-            <button class="attach-btn" id="attachBtn" title="Adjuntar imagen">🖼️ Imagen</button>
-            <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="sendImage()" />
-            <button onclick="sendMessage()">Enviar</button>
+            <div class="reply-bar" id="replyBar">
+                <div class="reply-text" id="replyBarText"></div>
+                <button class="reply-cancel" onclick="cancelReply()">✕</button>
+            </div>
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeydown="if(event.key==='Enter')sendMessage()" />
+                <button class="attach-btn" id="attachBtn" title="Adjuntar imagen">🖼️ Imagen</button>
+                <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="sendImage()" />
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
         </div>
     </div>
 
@@ -631,11 +682,35 @@
             let isAdminMode = false;
             let adminChatListener = null;
             let currentChatListener = null;
+            let replyingTo = null; // { text, sender }
+
+            // ============ NOTIFICACIONES ============
+            function requestNotificationPermission() {
+                if ('Notification' in window && Notification.permission === 'default') {
+                    Notification.requestPermission();
+                }
+            }
+
+            function showNotification(title, body, tag) {
+                if (!('Notification' in window) || Notification.permission !== 'granted') return;
+                try {
+                    const n = new Notification(title, {
+                        body: body,
+                        icon: 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg',
+                        tag: tag || 'rexis-chat',
+                        requireInteraction: false
+                    });
+                    n.onclick = () => {
+                        window.focus();
+                        n.close();
+                    };
+                    setTimeout(() => n.close(), 8000);
+                } catch (e) {}
+            }
 
             // ============ GOOGLE AUTH ============
             function updateGoogleButton() {
                 const btn = document.getElementById('googleAuthBtn');
-                const text = document.getElementById('googleBtnText');
                 if (currentUser) {
                     btn.classList.add('logged');
                     btn.innerHTML = `
@@ -654,7 +729,6 @@
 
             window.handleGoogleAuth = function() {
                 if (currentUser) {
-                    // Cerrar sesión
                     auth.signOut().then(() => {
                         currentUser = null;
                         userId = null;
@@ -670,6 +744,7 @@
                             userId = currentUser.uid;
                             localStorage.setItem('rexis_user_id', userId);
                             updateGoogleButton();
+                            requestNotificationPermission();
                         })
                         .catch((error) => {
                             console.error(error);
@@ -680,19 +755,18 @@
                 }
             };
 
-            // Escuchar cambios de autenticación
             auth.onAuthStateChanged((user) => {
                 currentUser = user;
                 if (user) {
                     userId = user.uid;
                     localStorage.setItem('rexis_user_id', userId);
+                    requestNotificationPermission();
                 } else {
                     userId = null;
                 }
                 updateGoogleButton();
             });
 
-            // Función que obliga a estar logueado
             window.requireAuthThen = function(callback) {
                 if (!currentUser) {
                     alert('Debes iniciar sesión con Google para poder usar el chat.\n\nHaz clic en el botón “Iniciar con Google” de la esquina superior derecha.');
@@ -880,33 +954,45 @@
                 localStorage.setItem('rexis_current_chat_id', currentChatId);
                 document.getElementById('misChatsBtn').classList.add('visible');
                 listenToChat(currentChatId);
-                db.ref('chats/' + currentChatId + '/meta').once('value').then(snap => {
-                    if (!snap.exists()) {
-                        db.ref('chats/' + currentChatId + '/meta').set({
-                            userId: userId,
-                            status: 'active',
-                            createdAt: firebase.database.ServerValue.TIMESTAMP,
-                            lastMessage: '',
-                            lastTimestamp: 0,
-                            nickname: ''
-                        });
-                        db.ref('chats/' + currentChatId + '/messages').push().set({
-                            sender: 'admin',
-                            type: 'text',
-                            text: '🟢 Atención al cliente disponible, te atenderán lo más rápido posible. ¿En qué podemos ayudarte?',
-                            timestamp: firebase.database.ServerValue.TIMESTAMP
-                        });
-                    } else {
-                        const meta = snap.val();
-                        if (meta.nickname) document.getElementById('chatHeaderTitle').textContent = meta.nickname;
-                    }
-                });
+
+                // Notificar al admin que alguien abrió el chat
+                if (!isAdminMode) {
+                    db.ref('chats/' + currentChatId + '/meta').once('value').then(snap => {
+                        if (!snap.exists()) {
+                            db.ref('chats/' + currentChatId + '/meta').set({
+                                userId: userId,
+                                status: 'active',
+                                createdAt: firebase.database.ServerValue.TIMESTAMP,
+                                lastMessage: '',
+                                lastTimestamp: 0,
+                                nickname: ''
+                            });
+                            db.ref('chats/' + currentChatId + '/messages').push().set({
+                                sender: 'admin',
+                                type: 'text',
+                                text: '🟢 Atención al cliente disponible, te atenderán lo más rápido posible. ¿En qué podemos ayudarte?',
+                                timestamp: firebase.database.ServerValue.TIMESTAMP
+                            });
+                        } else {
+                            const meta = snap.val();
+                            if (meta.nickname) document.getElementById('chatHeaderTitle').textContent = meta.nickname;
+                        }
+                    });
+                    // Señal de apertura de chat (para notificaciones de admin)
+                    db.ref('admin_notifications').push({
+                        type: 'chat_opened',
+                        chatId: currentChatId,
+                        userId: userId,
+                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                    });
+                }
                 document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
             }
 
             function closeChatWidget() {
                 document.getElementById('chatWindow').classList.remove('open');
                 isAdminMode = false;
+                cancelReply();
                 document.getElementById('chatInput').placeholder = 'Escribe tu mensaje...';
                 document.getElementById('chatHeaderTitle').textContent = 'Chat en vivo';
                 if (currentChatListener) {
@@ -923,22 +1009,48 @@
                 messagesDiv.innerHTML = '<div class="chat-auto-msg">🟢 Atención al cliente disponible, te atenderán lo más rápido posible.</div>';
                 currentChatListener = db.ref('chats/' + chatId + '/messages').orderByChild('timestamp').on('child_added', snap => {
                     const msg = snap.val();
-                    if (msg) appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', false);
+                    if (msg) {
+                        appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', msg.replyTo || null, false);
+
+                        // Notificación cuando llega un mensaje del otro lado
+                        const isFromOther = (isAdminMode && msg.sender === 'user') || (!isAdminMode && msg.sender === 'admin');
+                        if (isFromOther && document.hidden) {
+                            const who = msg.sender === 'user' ? 'Cliente' : 'Admin';
+                            const preview = msg.type === 'image' ? '📷 Imagen' : (msg.text || '').substring(0, 60);
+                            showNotification(who + ' · Rexis Chat', preview, 'msg-' + snap.key);
+                        }
+                        // Si eres admin y llega mensaje de usuario (aunque la pestaña esté visible)
+                        if (isAdminMode && msg.sender === 'user') {
+                            showNotification('Nuevo mensaje de cliente', (msg.text || '📷 Imagen').substring(0, 80), 'admin-msg-' + snap.key);
+                        }
+                    }
                 });
                 currentChatId = chatId;
                 localStorage.setItem('rexis_current_chat_id', chatId);
             }
 
-            function appendMessageToChat(sender, type, text, imageData, scroll = true) {
+            function appendMessageToChat(sender, type, text, imageData, replyTo, scroll = true) {
                 const messagesDiv = document.getElementById('chatMessages');
                 const autoMsg = messagesDiv.querySelector('.chat-auto-msg');
                 const wrapper = document.createElement('div');
                 wrapper.className = 'chat-message ' + (sender === 'admin' ? 'admin' : 'user');
 
+                // Guardamos datos para poder responder
+                wrapper.dataset.sender = sender;
+                wrapper.dataset.text = text || (type === 'image' ? '[Imagen]' : '');
+
                 const label = document.createElement('span');
                 label.className = 'sender-label';
                 label.textContent = sender === 'admin' ? 'Admin' : 'Tú';
                 wrapper.appendChild(label);
+
+                // Cita de respuesta
+                if (replyTo && replyTo.text) {
+                    const quote = document.createElement('div');
+                    quote.className = 'reply-quote';
+                    quote.textContent = (replyTo.sender === 'admin' ? 'Admin' : 'Usuario') + ': ' + replyTo.text;
+                    wrapper.appendChild(quote);
+                }
 
                 if (type === 'image' && imageData) {
                     const img = document.createElement('img');
@@ -951,10 +1063,38 @@
                     wrapper.appendChild(content);
                 }
 
+                // Click para responder
+                wrapper.addEventListener('click', function() {
+                    selectMessageForReply(this);
+                });
+
                 messagesDiv.appendChild(wrapper);
                 if (scroll) messagesDiv.scrollTop = messagesDiv.scrollHeight;
                 if (messagesDiv.querySelectorAll('.chat-message').length > 0 && autoMsg) autoMsg.style.display = 'none';
             }
+
+            function selectMessageForReply(el) {
+                // Quitar selección anterior
+                document.querySelectorAll('.chat-message.selected-for-reply').forEach(m => m.classList.remove('selected-for-reply'));
+                el.classList.add('selected-for-reply');
+
+                replyingTo = {
+                    text: el.dataset.text || '',
+                    sender: el.dataset.sender || 'user'
+                };
+
+                const bar = document.getElementById('replyBar');
+                const barText = document.getElementById('replyBarText');
+                barText.textContent = 'Respondiendo a ' + (replyingTo.sender === 'admin' ? 'Admin' : 'Usuario') + ': ' + (replyingTo.text.substring(0, 50) || '[mensaje]');
+                bar.classList.add('visible');
+                document.getElementById('chatInput').focus();
+            }
+
+            window.cancelReply = function() {
+                replyingTo = null;
+                document.getElementById('replyBar').classList.remove('visible');
+                document.querySelectorAll('.chat-message.selected-for-reply').forEach(m => m.classList.remove('selected-for-reply'));
+            };
 
             window.sendImage = function() {
                 if (!currentUser) return requireAuthThen(() => {});
@@ -970,18 +1110,23 @@
                         listenToChat(currentChatId);
                     }
                     const senderType = isAdminMode ? 'admin' : 'user';
-                    db.ref('chats/' + currentChatId + '/messages').push().set({
+                    const msgData = {
                         sender: senderType,
                         type: 'image',
                         imageData: imageData,
                         text: '',
                         timestamp: firebase.database.ServerValue.TIMESTAMP
-                    }).then(() => {
+                    };
+                    if (replyingTo) {
+                        msgData.replyTo = { text: replyingTo.text, sender: replyingTo.sender };
+                    }
+                    db.ref('chats/' + currentChatId + '/messages').push().set(msgData).then(() => {
                         db.ref('chats/' + currentChatId + '/meta').update({
                             lastMessage: '📷 Imagen',
                             lastTimestamp: firebase.database.ServerValue.TIMESTAMP,
                             status: 'active'
                         });
+                        cancelReply();
                     });
                     fileInput.value = '';
                 };
@@ -999,18 +1144,23 @@
                     listenToChat(currentChatId);
                 }
                 const senderType = isAdminMode ? 'admin' : 'user';
-                db.ref('chats/' + currentChatId + '/messages').push().set({
+                const msgData = {
                     sender: senderType,
                     type: 'text',
                     text: text,
                     imageData: '',
                     timestamp: firebase.database.ServerValue.TIMESTAMP
-                }).then(() => {
+                };
+                if (replyingTo) {
+                    msgData.replyTo = { text: replyingTo.text, sender: replyingTo.sender };
+                }
+                db.ref('chats/' + currentChatId + '/messages').push().set(msgData).then(() => {
                     db.ref('chats/' + currentChatId + '/meta').update({
                         lastMessage: text,
                         lastTimestamp: firebase.database.ServerValue.TIMESTAMP,
                         status: 'active'
                     });
+                    cancelReply();
                 });
                 input.value = '';
                 document.getElementById('misChatsBtn').classList.add('visible');
@@ -1050,6 +1200,15 @@
                     adminPasswordSection.style.display = 'none';
                     adminChatsList.style.display = 'block';
                     loadAdminChats();
+                    requestNotificationPermission();
+
+                    // Escuchar notificaciones de apertura de chat
+                    db.ref('admin_notifications').limitToLast(5).on('child_added', snap => {
+                        const n = snap.val();
+                        if (n && n.type === 'chat_opened') {
+                            showNotification('Cliente abrió un chat', 'Chat ID: ' + (n.chatId || '').substring(0, 18) + '...', 'open-' + snap.key);
+                        }
+                    });
                 } else {
                     alert('Contraseña incorrecta');
                     adminPasswordInput.value = '';
