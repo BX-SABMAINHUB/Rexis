@@ -25,16 +25,9 @@
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
+        html { scroll-behavior: smooth; font-size: 16px; }
 
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
@@ -47,46 +40,23 @@
             animation: bodyFade 1.2s ease-out;
         }
 
-        @keyframes bodyFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes bodyFade { from { opacity: 0; } to { opacity: 1; } }
 
-        body::before,
-        body::after {
+        body::before, body::after {
             content: '';
             position: fixed;
-            width: 600px;
-            height: 600px;
+            width: 600px; height: 600px;
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
             animation: floatBg 25s ease-in-out infinite alternate;
         }
-        body::before {
-            top: -200px;
-            left: -200px;
-            animation-duration: 28s;
-        }
-        body::after {
-            bottom: -200px;
-            right: -200px;
-            animation-duration: 32s;
-            animation-delay: 5s;
-        }
-        @keyframes floatBg {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(80px, -60px); }
-        }
+        body::before { top: -200px; left: -200px; animation-duration: 28s; }
+        body::after { bottom: -200px; right: -200px; animation-duration: 32s; animation-delay: 5s; }
+        @keyframes floatBg { 0% { transform: translate(0,0); } 100% { transform: translate(80px,-60px); } }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
         /* ===== NAV ===== */
         nav {
@@ -94,7 +64,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 16px 28px;
-            background: rgba(18, 18, 18, 0.85);
+            background: rgba(18,18,18,0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
@@ -105,972 +75,354 @@
             margin-bottom: 6px;
             animation: slideNav 0.7s ease-out;
         }
-        @keyframes slideNav {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes slideNav { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .nav-logo {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(180deg, #ffffff, #aaaaaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-            transition: var(--transition);
+            font-size: 2rem; font-weight: 900; letter-spacing: -1px;
+            background: linear-gradient(180deg,#fff,#aaa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            cursor: pointer; transition: var(--transition);
             animation: logoAnim 0.7s ease-out 0.2s both;
         }
-        @keyframes logoAnim {
-            0% { transform: scale(0.6); opacity: 0; }
-            60% { transform: scale(1.05); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .nav-logo:hover {
-            filter: brightness(1.3);
-            transform: scale(1.02);
-        }
+        @keyframes logoAnim { 0% { transform: scale(0.6); opacity: 0; } 60% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
+        .nav-logo:hover { filter: brightness(1.3); transform: scale(1.02); }
         .nav-cta {
-            background: var(--white);
-            color: #000;
-            border: none;
-            padding: 10px 26px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
-            letter-spacing: 0.3px;
-            white-space: nowrap;
+            background: var(--white); color: #000; border: none;
+            padding: 10px 26px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+            cursor: pointer; transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(255,255,255,0.1); letter-spacing: 0.3px; white-space: nowrap;
         }
-        .nav-cta:hover {
-            background: #dddddd;
+        .nav-cta:hover { background: #ddd; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.2); }
+
+        /* ===== GOOGLE BUTTON (esquina superior derecha) ===== */
+        .google-auth-btn {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #333;
+            border: none;
+            padding: 9px 16px 9px 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .google-auth-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+        }
+        .google-auth-btn img {
+            width: 18px; height: 18px;
+        }
+        .google-auth-btn.logged {
+            background: var(--card);
+            color: #fff;
+            border: 1px solid var(--border);
+            padding: 6px 14px 6px 6px;
+        }
+        .google-auth-btn.logged img.avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+        }
+        .google-auth-btn .logout-x {
+            margin-left: 4px;
+            opacity: 0.7;
+            font-size: 1.1rem;
         }
 
         /* ===== HERO ===== */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
-            position: relative;
-            z-index: 1;
-        }
+        .hero { text-align: center; padding: 80px 20px 40px; position: relative; z-index: 1; }
         .hero-title {
-            font-size: clamp(3rem, 7vw, 6rem);
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            background: linear-gradient(180deg, #ffffff 0%, #999999 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-            animation: fadeUp 1s ease-out;
+            font-size: clamp(3rem,7vw,6rem); font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+            background: linear-gradient(180deg,#fff 0%,#999 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 8px; animation: fadeUp 1s ease-out;
         }
-        .hero-subtitle {
-            font-size: clamp(1.4rem, 2.8vw, 2.2rem);
-            font-weight: 300;
-            color: var(--text2);
-            letter-spacing: 2px;
-            margin-bottom: 4px;
-            animation: fadeUp 1s ease-out 0.15s both;
-        }
-        .hero-slogan {
-            font-size: 1.2rem;
-            color: var(--lightgray);
-            font-weight: 500;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            animation: fadeUp 1s ease-out 0.3s both;
-        }
+        .hero-subtitle { font-size: clamp(1.4rem,2.8vw,2.2rem); font-weight: 300; color: var(--text2); letter-spacing: 2px; margin-bottom: 4px; animation: fadeUp 1s ease-out 0.15s both; }
+        .hero-slogan { font-size: 1.2rem; color: var(--lightgray); font-weight: 500; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; animation: fadeUp 1s ease-out 0.3s both; }
         .hero-btn {
-            display: inline-block;
-            background: var(--white);
-            color: #000;
-            padding: 16px 48px;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.12);
+            display: inline-block; background: var(--white); color: #000; padding: 16px 48px; border-radius: 60px;
+            font-size: 1.1rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none;
+            transition: var(--transition); box-shadow: 0 8px 30px rgba(255,255,255,0.12);
             animation: fadeUp 1s ease-out 0.45s both, pulseHero 3s ease-in-out infinite;
         }
-        @keyframes pulseHero {
-            0%, 100% { box-shadow: 0 8px 30px rgba(255, 255, 255, 0.12); }
-            50% { box-shadow: 0 12px 44px rgba(255, 255, 255, 0.25); }
-        }
-        .hero-btn:hover {
-            background: #dddddd;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 14px 40px rgba(255, 255, 255, 0.25);
-        }
+        @keyframes pulseHero { 0%,100% { box-shadow: 0 8px 30px rgba(255,255,255,0.12); } 50% { box-shadow: 0 12px 44px rgba(255,255,255,0.25); } }
+        .hero-btn:hover { background: #ddd; transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 40px rgba(255,255,255,0.25); }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ===== NUEVA SECCIÓN: INGENIERÍA REPUTACIÓN ===== */
-        .reputation-section {
-            padding: 60px 0 40px;
-        }
+        /* ===== REPUTACIÓN ===== */
+        .reputation-section { padding: 60px 0 40px; }
         .reputation-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            text-align: center;
-            letter-spacing: -1px;
-            background: linear-gradient(180deg, #ffffff, #aaaaaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.8rem; font-weight: 800; text-align: center; letter-spacing: -1px;
+            background: linear-gradient(180deg,#fff,#aaa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             margin-bottom: 50px;
         }
-        .reputation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .reputation-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         .reputation-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 36px 28px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            animation: fadeUp 0.8s ease-out both;
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 36px 28px; text-align: center; transition: var(--transition); box-shadow: var(--shadow);
+            position: relative; overflow: hidden; animation: fadeUp 0.8s ease-out both;
         }
-        .reputation-card:nth-child(1) { animation-delay: 0.1s; }
-        .reputation-card:nth-child(2) { animation-delay: 0.2s; }
-        .reputation-card:nth-child(3) { animation-delay: 0.3s; }
-        .reputation-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--lightgray);
-            box-shadow: var(--shadow-glow);
-        }
-        .reputation-card .step-number {
-            font-size: 3.4rem;
-            font-weight: 900;
-            color: var(--lightgray);
-            opacity: 0.25;
-            letter-spacing: -2px;
-            line-height: 1;
-            margin-bottom: 8px;
-            transition: opacity 0.3s;
-        }
+        .reputation-card:nth-child(1){animation-delay:0.1s} .reputation-card:nth-child(2){animation-delay:0.2s} .reputation-card:nth-child(3){animation-delay:0.3s}
+        .reputation-card:hover { transform: translateY(-8px); border-color: var(--lightgray); box-shadow: var(--shadow-glow); }
+        .reputation-card .step-number { font-size: 3.4rem; font-weight: 900; color: var(--lightgray); opacity: 0.25; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; transition: opacity 0.3s; }
         .reputation-card:hover .step-number { opacity: 0.5; }
-        .reputation-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-        .reputation-card p {
-            color: var(--text2);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        .reputation-card .highlight {
-            color: var(--white);
-            font-weight: 600;
-        }
+        .reputation-card h3 { font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -0.5px; }
+        .reputation-card p { color: var(--text2); font-size: 1rem; line-height: 1.6; }
+        .reputation-card .highlight { color: var(--white); font-weight: 600; }
 
-        /* ===== GRÁFICA ===== */
-        .section {
-            padding: 60px 0;
-            position: relative;
-            z-index: 1;
-        }
+        /* ===== SECTIONS ===== */
+        .section { padding: 60px 0; position: relative; z-index: 1; }
         .section-title {
-            font-size: 2.4rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 40px;
-            letter-spacing: -1px;
-            background: linear-gradient(180deg, #fff, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.4rem; font-weight: 800; text-align: center; margin-bottom: 40px; letter-spacing: -1px;
+            background: linear-gradient(180deg,#fff,#aaa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
         .chart-wrapper {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 30px 20px 20px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            max-width: 900px;
-            margin: 0 auto;
+            background: var(--card); border-radius: var(--radius); padding: 30px 20px 20px;
+            border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 900px; margin: 0 auto;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .chart-wrapper:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-glow);
-        }
-        canvas {
-            display: block;
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-        }
-        .chart-label {
-            text-align: center;
-            color: var(--text2);
-            font-size: 0.9rem;
-            margin-top: 12px;
-            letter-spacing: 1px;
-        }
+        .chart-wrapper:hover { transform: translateY(-4px); box-shadow: var(--shadow-glow); }
+        canvas { display: block; width: 100%; height: auto; max-height: 400px; }
+        .chart-label { text-align: center; color: var(--text2); font-size: 0.9rem; margin-top: 12px; letter-spacing: 1px; }
 
         /* ===== PLANES ===== */
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 28px;
-            max-width: 1050px;
-            margin: 0 auto;
-        }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap: 28px; max-width: 1050px; margin: 0 auto; }
         .plan-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 36px 24px;
-            text-align: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            animation: fadeUp 0.8s ease-out both;
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 36px 24px; text-align: center; transition: var(--transition); box-shadow: var(--shadow);
+            position: relative; overflow: hidden; animation: fadeUp 0.8s ease-out both;
         }
-        .plan-card:nth-child(1) { animation-delay: 0.1s; }
-        .plan-card:nth-child(2) { animation-delay: 0.2s; }
-        .plan-card:nth-child(3) { animation-delay: 0.3s; }
-        .plan-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--lightgray);
-            box-shadow: var(--shadow-glow);
-        }
-        .plan-card.popular {
-            border: 2px solid var(--white);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
-        }
-        .plan-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--white);
-            color: #000;
-            font-weight: 700;
-            font-size: 0.7rem;
-            padding: 4px 14px;
-            border-radius: 50px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .plan-resenas {
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: -2px;
-        }
-        .plan-resenas span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text2);
-            letter-spacing: 0;
-        }
-        .plan-price {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: var(--white);
-            margin: 8px 0;
-        }
-        .plan-price small {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text2);
-        }
-        .plan-features {
-            list-style: none;
-            text-align: left;
-            margin: 18px 0 0;
-            padding: 0;
-        }
-        .plan-features li {
-            padding: 6px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-            color: var(--text2);
-            transition: color 0.3s;
-        }
+        .plan-card:nth-child(1){animation-delay:0.1s} .plan-card:nth-child(2){animation-delay:0.2s} .plan-card:nth-child(3){animation-delay:0.3s}
+        .plan-card:hover { transform: translateY(-6px); border-color: var(--lightgray); box-shadow: var(--shadow-glow); }
+        .plan-card.popular { border: 2px solid var(--white); box-shadow: 0 0 40px rgba(255,255,255,0.06); }
+        .plan-badge { position: absolute; top: 16px; right: 16px; background: var(--white); color: #000; font-weight: 700; font-size: 0.7rem; padding: 4px 14px; border-radius: 50px; letter-spacing: 1px; text-transform: uppercase; }
+        .plan-resenas { font-size: 3.2rem; font-weight: 900; color: #fff; letter-spacing: -2px; }
+        .plan-resenas span { font-size: 1rem; font-weight: 400; color: var(--text2); letter-spacing: 0; }
+        .plan-price { font-size: 2.6rem; font-weight: 800; color: var(--white); margin: 8px 0; }
+        .plan-features { list-style: none; text-align: left; margin: 18px 0 0; padding: 0; }
+        .plan-features li { padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text2); transition: color 0.3s; }
         .plan-features li:hover { color: #fff; }
-        .plan-features li::before {
-            content: '✓ ';
-            color: var(--lightgray);
-            font-weight: 700;
-        }
+        .plan-features li::before { content: '✓ '; color: var(--lightgray); font-weight: 700; }
         .plan-cta {
-            display: inline-block;
-            margin-top: 22px;
-            background: var(--white);
-            color: #000;
-            padding: 12px 34px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
+            display: inline-block; margin-top: 22px; background: var(--white); color: #000;
+            padding: 12px 34px; border-radius: 50px; font-weight: 700; text-decoration: none;
+            cursor: pointer; transition: var(--transition); border: none; font-size: 0.95rem; letter-spacing: 0.3px;
         }
-        .plan-cta:hover {
-            background: #dddddd;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
-        }
-        .plan-cta.gold {
-            background: var(--lightgray);
-            color: #000;
-        }
-        .plan-cta.gold:hover { background: #cccccc; }
+        .plan-cta:hover { background: #ddd; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,255,255,0.15); }
+        .plan-cta.gold { background: var(--lightgray); color: #000; }
+        .plan-cta.gold:hover { background: #ccc; }
 
         .custom-plan {
-            text-align: center;
-            margin-top: 40px;
-            padding: 28px;
-            background: var(--card);
-            border-radius: var(--radius);
-            border: 1px dashed var(--border);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeUp 0.8s ease-out 0.5s both;
+            text-align: center; margin-top: 40px; padding: 28px; background: var(--card);
+            border-radius: var(--radius); border: 1px dashed var(--border); max-width: 600px;
+            margin-left: auto; margin-right: auto; animation: fadeUp 0.8s ease-out 0.5s both;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-        .custom-plan:hover {
-            border-color: var(--lightgray);
-            box-shadow: var(--shadow-glow);
-        }
-        .custom-plan h3 {
-            font-size: 1.5rem;
-            color: var(--lightgray);
-            margin-bottom: 6px;
-        }
-        .custom-plan p {
-            color: var(--text2);
-            font-size: 1.05rem;
-        }
+        .custom-plan:hover { border-color: var(--lightgray); box-shadow: var(--shadow-glow); }
+        .custom-plan h3 { font-size: 1.5rem; color: var(--lightgray); margin-bottom: 6px; }
+        .custom-plan p { color: var(--text2); font-size: 1.05rem; }
         .custom-plan .price-highlight {
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: #fff;
-            letter-spacing: -1px;
-            display: inline-block;
-            animation: pricePulse 3s ease-in-out infinite;
+            font-weight: 800; font-size: 1.8rem; color: #fff; letter-spacing: -1px;
+            display: inline-block; animation: pricePulse 3s ease-in-out infinite;
         }
-        @keyframes pricePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.06); color: var(--lightgray); }
-        }
+        @keyframes pricePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); color: var(--lightgray); } }
 
         /* ===== RESEÑAS ===== */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1050px;
-            margin: 0 auto;
-        }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 20px; max-width: 1050px; margin: 0 auto; }
         .review-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 26px;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            animation: fadeUp 0.8s ease-out both;
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 26px; transition: var(--transition); box-shadow: var(--shadow); animation: fadeUp 0.8s ease-out both;
         }
-        .review-card:nth-child(1) { animation-delay: 0.1s; }
-        .review-card:nth-child(2) { animation-delay: 0.2s; }
-        .review-card:nth-child(3) { animation-delay: 0.3s; }
-        .review-card:hover {
-            border-color: var(--lightgray);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-4px);
-        }
-        .review-stars {
-            color: var(--white);
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            margin-bottom: 6px;
-        }
-        .review-text {
-            font-style: italic;
-            color: #d0d0d0;
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-        .review-author {
-            font-weight: 700;
-            color: #fff;
-            font-size: 0.9rem;
-        }
-        .review-date {
-            font-size: 0.78rem;
-            color: var(--text2);
-        }
+        .review-card:nth-child(1){animation-delay:0.1s} .review-card:nth-child(2){animation-delay:0.2s} .review-card:nth-child(3){animation-delay:0.3s}
+        .review-card:hover { border-color: var(--lightgray); box-shadow: var(--shadow-glow); transform: translateY(-4px); }
+        .review-stars { color: var(--white); font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 6px; }
+        .review-text { font-style: italic; color: #d0d0d0; margin-bottom: 12px; line-height: 1.6; }
+        .review-author { font-weight: 700; color: #fff; font-size: 0.9rem; }
+        .review-date { font-size: 0.78rem; color: var(--text2); }
 
         .btn-ver-mas {
-            display: block;
-            margin: 30px auto 0;
-            background: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-            padding: 11px 38px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
-            letter-spacing: 0.5px;
+            display: block; margin: 30px auto 0; background: transparent; border: 2px solid var(--white);
+            color: var(--white); padding: 11px 38px; border-radius: 50px; font-weight: 700;
+            cursor: pointer; transition: var(--transition); font-size: 1rem; letter-spacing: 0.5px;
         }
-        .btn-ver-mas:hover {
-            background: var(--white);
-            color: #000;
-            transform: scale(1.03);
-        }
+        .btn-ver-mas:hover { background: var(--white); color: #000; transform: scale(1.03); }
 
         /* ===== CONTACTO ===== */
         .contact-section {
-            text-align: center;
-            padding: 44px 24px;
-            background: var(--card);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            max-width: 700px;
-            margin: 0 auto;
-            box-shadow: var(--shadow);
+            text-align: center; padding: 44px 24px; background: var(--card); border-radius: var(--radius);
+            border: 1px solid var(--border); max-width: 700px; margin: 0 auto; box-shadow: var(--shadow);
             transition: box-shadow 0.3s, transform 0.3s;
         }
-        .contact-section:hover {
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-3px);
-        }
-        .contact-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        .contact-section .hours {
-            color: var(--lightgray);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin: 12px 0 20px;
-            letter-spacing: 0.5px;
-        }
+        .contact-section:hover { box-shadow: var(--shadow-glow); transform: translateY(-3px); }
+        .contact-section h3 { font-size: 1.8rem; margin-bottom: 8px; color: #fff; }
+        .contact-section .hours { color: var(--lightgray); font-weight: 600; font-size: 1.1rem; margin: 12px 0 20px; letter-spacing: 0.5px; }
         .btn-chat {
-            display: inline-block;
-            background: var(--white);
-            color: #000;
-            padding: 14px 46px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            box-shadow: 0 6px 24px rgba(255, 255, 255, 0.1);
+            display: inline-block; background: var(--white); color: #000; padding: 14px 46px; border-radius: 60px;
+            font-weight: 700; font-size: 1rem; cursor: pointer; border: none; transition: var(--transition);
+            letter-spacing: 0.5px; text-decoration: none; box-shadow: 0 6px 24px rgba(255,255,255,0.1);
         }
-        .btn-chat:hover {
-            background: #dddddd;
-            box-shadow: 0 10px 36px rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
+        .btn-chat:hover { background: #ddd; box-shadow: 0 10px 36px rgba(255,255,255,0.2); transform: translateY(-2px); }
 
         /* ===== CHAT WIDGET ===== */
-        .chat-widget {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
+        .chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
         .chat-bubble-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--white);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 28px rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            color: #000;
-            transition: var(--transition);
-            position: relative;
-            z-index: 2001;
+            width: 60px; height: 60px; border-radius: 50%; background: var(--white); border: none; cursor: pointer;
+            box-shadow: 0 8px 28px rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; color: #000; transition: var(--transition); position: relative; z-index: 2001;
             animation: floatBubble 3s ease-in-out infinite;
         }
-        @keyframes floatBubble {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .chat-bubble-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 36px rgba(255, 255, 255, 0.25);
-            animation: none;
-        }
+        @keyframes floatBubble { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .chat-bubble-btn:hover { transform: scale(1.08); box-shadow: 0 12px 36px rgba(255,255,255,0.25); animation: none; }
         .mis-chats-btn {
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: #fff;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: var(--transition);
-            display: none;
-            letter-spacing: 0.5px;
-            box-shadow: var(--shadow);
+            background: var(--card); border: 1px solid var(--border); color: #fff; padding: 8px 18px;
+            border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: var(--transition);
+            display: none; letter-spacing: 0.5px; box-shadow: var(--shadow);
         }
-        .mis-chats-btn.visible {
-            display: inline-block;
-            animation: fadeUp 0.4s ease-out;
-        }
-        .mis-chats-btn:hover {
-            background: var(--white);
-            color: #000;
-            transform: scale(1.04);
-        }
+        .mis-chats-btn.visible { display: inline-block; animation: fadeUp 0.4s ease-out; }
+        .mis-chats-btn:hover { background: var(--white); color: #000; transform: scale(1.04); }
 
         .chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 24px;
-            width: 400px;
-            max-width: 90vw;
-            height: 550px;
-            max-height: 70vh;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-glow);
-            display: none;
-            flex-direction: column;
-            z-index: 1999;
-            overflow: hidden;
+            position: fixed; bottom: 100px; right: 24px; width: 400px; max-width: 90vw; height: 550px; max-height: 70vh;
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            box-shadow: var(--shadow-glow); display: none; flex-direction: column; z-index: 1999; overflow: hidden;
             animation: slideChat 0.3s ease-out;
         }
         .chat-window.open { display: flex; }
-        @keyframes slideChat {
-            from { opacity: 0; transform: translateY(30px) scale(0.96); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+        @keyframes slideChat { from { opacity: 0; transform: translateY(30px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
         .chat-header {
-            background: var(--surface);
-            padding: 14px 18px;
-            color: #fff;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            letter-spacing: 0.3px;
-            font-size: 0.95rem;
+            background: var(--surface); padding: 14px 18px; color: #fff; font-weight: 700;
+            display: flex; justify-content: space-between; align-items: center; letter-spacing: 0.3px; font-size: 0.95rem;
             border-bottom: 1px solid var(--border);
         }
-        .chat-close {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: var(--transition);
-            padding: 0 4px;
-        }
-        .chat-close:hover {
-            opacity: 0.6;
-            transform: rotate(90deg) scale(1.2);
-        }
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: #0d0d0d;
-        }
+        .chat-close { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; transition: var(--transition); padding: 0 4px; }
+        .chat-close:hover { opacity: 0.6; transform: rotate(90deg) scale(1.2); }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: #0d0d0d; }
         .chat-message {
-            max-width: 80%;
-            padding: 10px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            word-wrap: break-word;
-            animation: msgIn 0.25s ease-out;
-            display: flex;
-            flex-direction: column;
+            max-width: 80%; padding: 10px 16px; border-radius: 20px; font-size: 0.9rem; line-height: 1.5;
+            word-wrap: break-word; animation: msgIn 0.25s ease-out; display: flex; flex-direction: column;
         }
         .chat-message .sender-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-            padding: 2px 8px;
-            border-radius: 12px;
-            display: inline-block;
-            width: fit-content;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px;
+            padding: 2px 8px; border-radius: 12px; display: inline-block; width: fit-content;
         }
-        .chat-message img {
-            max-width: 200px;
-            border-radius: 12px;
-            margin-top: 6px;
-            border: 1px solid var(--border);
-            box-shadow: 0 0 8px rgba(255,255,255,0.1);
-        }
-        @keyframes msgIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* ADMIN = fondo oscuro / negro */
-        .chat-message.admin {
-            align-self: flex-start;
-            background: #2a2a2a;
-            color: #f0f0f0;
-            border-bottom-left-radius: 6px;
-        }
-        .chat-message.admin .sender-label {
-            background: #3a3a3a;
-            color: #fff;
-        }
-        /* USUARIO = fondo blanco / claro */
-        .chat-message.user {
-            align-self: flex-end;
-            background: #e0e0e0;
-            color: #000;
-            border-bottom-right-radius: 6px;
-        }
-        .chat-message.user .sender-label {
-            background: #ffffff;
-            color: #000;
-        }
-        .chat-input-area {
-            display: flex;
-            padding: 12px;
-            gap: 8px;
-            border-top: 1px solid var(--border);
-            background: var(--bg2);
-            align-items: center;
-        }
+        .chat-message img { max-width: 200px; border-radius: 12px; margin-top: 6px; border: 1px solid var(--border); box-shadow: 0 0 8px rgba(255,255,255,0.1); }
+        @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-message.admin { align-self: flex-start; background: #2a2a2a; color: #f0f0f0; border-bottom-left-radius: 6px; }
+        .chat-message.admin .sender-label { background: #3a3a3a; color: #fff; }
+        .chat-message.user { align-self: flex-end; background: #e0e0e0; color: #000; border-bottom-right-radius: 6px; }
+        .chat-message.user .sender-label { background: #fff; color: #000; }
+        .chat-input-area { display: flex; padding: 12px; gap: 8px; border-top: 1px solid var(--border); background: var(--bg2); align-items: center; }
         .chat-input-area input[type="text"] {
-            flex: 1;
-            padding: 10px 16px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: #1a1a1a;
-            color: #fff;
-            font-size: 0.9rem;
-            outline: none;
-            transition: var(--transition);
+            flex: 1; padding: 10px 16px; border-radius: 50px; border: 1px solid var(--border);
+            background: #1a1a1a; color: #fff; font-size: 0.9rem; outline: none; transition: var(--transition);
         }
-        .chat-input-area input[type="text"]:focus {
-            border-color: var(--lightgray);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-        }
+        .chat-input-area input[type="text"]:focus { border-color: var(--lightgray); box-shadow: 0 0 0 3px rgba(255,255,255,0.05); }
         .chat-input-area button {
-            background: var(--white);
-            border: none;
-            color: #000;
-            padding: 10px 18px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: var(--transition);
-            white-space: nowrap;
+            background: var(--white); border: none; color: #000; padding: 10px 18px; border-radius: 50px;
+            cursor: pointer; font-weight: 700; transition: var(--transition); white-space: nowrap;
         }
-        .chat-input-area button:hover {
-            background: #dddddd;
-            transform: scale(1.04);
-        }
+        .chat-input-area button:hover { background: #ddd; transform: scale(1.04); }
         .attach-btn {
-            background: transparent;
-            border: 2px solid var(--lightgray);
-            color: var(--lightgray);
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
+            background: transparent; border: 2px solid var(--lightgray); color: var(--lightgray);
+            font-size: 0.9rem; font-weight: 600; padding: 8px 16px; border-radius: 50px; cursor: pointer;
+            transition: var(--transition); display: flex; align-items: center; gap: 4px; white-space: nowrap;
         }
-        .attach-btn:hover {
-            background: var(--lightgray);
-            color: #000;
-        }
-        .chat-auto-msg {
-            text-align: center;
-            color: var(--text2);
-            font-size: 0.8rem;
-            padding: 8px;
-            font-style: italic;
-        }
+        .attach-btn:hover { background: var(--lightgray); color: #000; }
+        .chat-auto-msg { text-align: center; color: var(--text2); font-size: 0.8rem; padding: 8px; font-style: italic; }
 
         /* ===== ADMIN ===== */
         .admin-trigger {
-            position: fixed;
-            bottom: 8px;
-            right: 8px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            z-index: 3000;
-            opacity: 0.15;
-            transition: opacity 0.5s;
+            position: fixed; bottom: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer; z-index: 3000; opacity: 0.15; transition: opacity 0.5s;
         }
-        .admin-trigger:hover {
-            opacity: 0.5;
-            background: rgba(255, 255, 255, 0.06);
-        }
+        .admin-trigger:hover { opacity: 0.5; background: rgba(255,255,255,0.06); }
         .admin-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 4000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(6px);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4000; display: none;
+            align-items: center; justify-content: center; backdrop-filter: blur(6px);
         }
-        .admin-modal.open {
-            display: flex;
-            animation: modalFade 0.3s ease-out;
-        }
-        @keyframes modalFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        .admin-modal.open { display: flex; animation: modalFade 0.3s ease-out; }
+        @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
         .admin-panel {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 30px;
-            width: 95vw;
-            max-width: 800px;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-glow);
-            animation: slideUpModal 0.4s ease-out;
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 30px; width: 95vw; max-width: 800px; max-height: 85vh; overflow-y: auto;
+            box-shadow: var(--shadow-glow); animation: slideUpModal 0.4s ease-out;
         }
-        @keyframes slideUpModal {
-            from { transform: translateY(50px) scale(0.92); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-        .admin-panel h2 {
-            color: #fff;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            font-size: 1.6rem;
-        }
+        @keyframes slideUpModal { from { transform: translateY(50px) scale(0.92); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+        .admin-panel h2 { color: #fff; margin-bottom: 20px; letter-spacing: -1px; font-size: 1.6rem; }
         .admin-chat-item {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            transition: var(--transition);
-            animation: fadeUp 0.4s ease-out both;
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm);
+            padding: 14px 16px; margin-bottom: 12px; display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 10px; transition: var(--transition); animation: fadeUp 0.4s ease-out both;
         }
         .admin-chat-item:hover { border-color: var(--lightgray); }
-        .admin-chat-item .info {
-            flex: 1;
-            min-width: 180px;
-        }
-        .admin-chat-item .info strong {
-            color: #fff;
-            display: block;
-            font-size: 0.95rem;
-        }
-        .admin-chat-item .info .nickname {
-            color: var(--lightgray);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 2px;
-        }
-        .admin-chat-item .info span {
-            font-size: 0.78rem;
-            color: var(--text2);
-            display: block;
-            margin-top: 4px;
-        }
-        .admin-chat-item .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            align-items: center;
-        }
+        .admin-chat-item .info { flex: 1; min-width: 180px; }
+        .admin-chat-item .info strong { color: #fff; display: block; font-size: 0.95rem; }
+        .admin-chat-item .info .nickname { color: var(--lightgray); font-size: 0.85rem; font-weight: 600; margin-top: 2px; }
+        .admin-chat-item .info span { font-size: 0.78rem; color: var(--text2); display: block; margin-top: 4px; }
+        .admin-chat-item .actions { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
         .admin-chat-item button {
-            padding: 6px 12px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.72rem;
-            letter-spacing: 0.3px;
-            transition: var(--transition);
+            padding: 6px 12px; border-radius: 50px; border: none; cursor: pointer;
+            font-weight: 600; font-size: 0.72rem; letter-spacing: 0.3px; transition: var(--transition);
         }
         .btn-resolve { background: var(--lightgray); color: #000; }
         .btn-archive { background: #555; color: #fff; }
         .btn-delete { background: #777; color: #fff; }
         .btn-open-chat { background: var(--white); color: #000; }
-        .btn-rename {
-            background: #444;
-            color: #fff;
-            border: 1px solid var(--border);
-        }
-        .admin-chat-item button:hover {
-            filter: brightness(1.2);
-            transform: scale(1.04);
-        }
-        .rename-row {
-            display: none;
-            width: 100%;
-            margin-top: 8px;
-            gap: 8px;
-            align-items: center;
-        }
+        .btn-rename { background: #444; color: #fff; border: 1px solid var(--border); }
+        .admin-chat-item button:hover { filter: brightness(1.2); transform: scale(1.04); }
+        .rename-row { display: none; width: 100%; margin-top: 8px; gap: 8px; align-items: center; }
         .rename-row.visible { display: flex; }
         .rename-row input {
-            flex: 1;
-            padding: 8px 14px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: #1a1a1a;
-            color: #fff;
-            font-size: 0.85rem;
-            outline: none;
+            flex: 1; padding: 8px 14px; border-radius: 50px; border: 1px solid var(--border);
+            background: #1a1a1a; color: #fff; font-size: 0.85rem; outline: none;
         }
         .rename-row input:focus { border-color: var(--lightgray); }
-        .rename-row button {
-            padding: 8px 16px !important;
-            font-size: 0.8rem !important;
-        }
+        .rename-row button { padding: 8px 16px !important; font-size: 0.8rem !important; }
         .admin-close {
-            display: block;
-            margin: 20px auto 0;
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
+            display: block; margin: 20px auto 0; background: #333; color: #fff; border: none;
+            padding: 10px 30px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: var(--transition);
         }
-        .admin-close:hover {
-            background: #555;
-            transform: scale(1.03);
-        }
-        .admin-password-input {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
+        .admin-close:hover { background: #555; transform: scale(1.03); }
+        .admin-password-input { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .admin-password-input input {
-            flex: 1;
-            min-width: 180px;
-            padding: 10px 16px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: #1a1a1a;
-            color: #fff;
-            font-size: 0.9rem;
-            outline: none;
-            transition: var(--transition);
+            flex: 1; min-width: 180px; padding: 10px 16px; border-radius: 50px; border: 1px solid var(--border);
+            background: #1a1a1a; color: #fff; font-size: 0.9rem; outline: none; transition: var(--transition);
         }
         .admin-password-input input:focus { border-color: var(--lightgray); }
         .admin-password-input button {
-            padding: 10px 24px;
-            border-radius: 50px;
-            background: var(--white);
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            transition: var(--transition);
+            padding: 10px 24px; border-radius: 50px; background: var(--white); color: #000;
+            border: none; cursor: pointer; font-weight: 700; transition: var(--transition);
         }
-        .admin-password-input button:hover {
-            background: #dddddd;
-            transform: scale(1.03);
-        }
+        .admin-password-input button:hover { background: #ddd; transform: scale(1.03); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.4rem; }
             .hero-subtitle { font-size: 1.1rem; }
-            .chat-window {
-                width: 95vw;
-                right: 2.5vw;
-                bottom: 90px;
-                height: 60vh;
-            }
-            nav {
-                padding: 10px 16px;
-                flex-wrap: wrap;
-                gap: 6px;
-            }
+            .chat-window { width: 95vw; right: 2.5vw; bottom: 90px; height: 60vh; }
+            nav { padding: 10px 16px; flex-wrap: wrap; gap: 6px; }
             .nav-logo { font-size: 1.4rem; }
-            .nav-cta {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-            .plans-grid,
-            .reviews-grid { grid-template-columns: 1fr; }
+            .nav-cta { padding: 8px 16px; font-size: 0.8rem; }
+            .plans-grid, .reviews-grid { grid-template-columns: 1fr; }
             .reputation-grid { grid-template-columns: 1fr; }
             .reputation-title { font-size: 2rem; }
+            .google-auth-btn { top: 12px; right: 12px; font-size: 0.78rem; padding: 8px 12px; }
         }
 
-        /* ===== SCROLL ANIMATIONS ===== */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1078,10 +430,16 @@
 </head>
 <body>
 
+    <!-- ===== BOTÓN GOOGLE (esquina superior derecha) ===== -->
+    <button class="google-auth-btn" id="googleAuthBtn" onclick="handleGoogleAuth()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+        <span id="googleBtnText">Iniciar con Google</span>
+    </button>
+
     <!-- ===== NAV ===== -->
     <nav>
         <div class="nav-logo" onclick="scrollToTop()">Rexis</div>
-        <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contáctenos</button>
+        <button class="nav-cta" onclick="requireAuthThen(() => document.getElementById('contacto').scrollIntoView({behavior:'smooth'}))">Contáctenos</button>
     </nav>
 
     <!-- ===== HERO ===== -->
@@ -1092,7 +450,7 @@
         <a href="#planes" class="hero-btn">Ver planes</a>
     </section>
 
-    <!-- ===== NUEVA SECCIÓN: INGENIERÍA DETRÁS DE TU REPUTACIÓN ===== -->
+    <!-- ===== REPUTACIÓN ===== -->
     <section class="reputation-section" id="reputacion">
         <div class="container">
             <h2 class="reputation-title">Ingeniería detrás de tu reputación.</h2>
@@ -1100,23 +458,17 @@
                 <div class="reputation-card animate-on-scroll">
                     <div class="step-number">01</div>
                     <h3>Perfiles Reales Geolocalizados</h3>
-                    <p>
-                        Cuentas con historial verificable y actividad orgánica (Local Guides) para que Google asimile cada reseña con <span class="highlight">máxima autoridad</span> y credibilidad.
-                    </p>
+                    <p>Cuentas con historial verificable y actividad orgánica (Local Guides) para que Google asimile cada reseña con <span class="highlight">máxima autoridad</span> y credibilidad.</p>
                 </div>
                 <div class="reputation-card animate-on-scroll">
                     <div class="step-number">02</div>
                     <h3>Redacción con SEO Local</h3>
-                    <p>
-                        Integramos palabras clave sutiles y naturales (ej. <span class="highlight">"el mejor servicio de la ciudad"</span>) para potenciar tu posicionamiento en buscadores y atraer tráfico cualificado.
-                    </p>
+                    <p>Integramos palabras clave sutiles y naturales (ej. <span class="highlight">"el mejor servicio de la ciudad"</span>) para potenciar tu posicionamiento en buscadores y atraer tráfico cualificado.</p>
                 </div>
                 <div class="reputation-card animate-on-scroll">
                     <div class="step-number">03</div>
                     <h3>Goteo Algorítmico Inteligente</h3>
-                    <p>
-                        Publicación progresiva y espaciada en el tiempo que emula un <span class="highlight">crecimiento 100% natural</span>. Anti‑baneos y completamente adaptado a los ciclos de Google.
-                    </p>
+                    <p>Publicación progresiva y espaciada en el tiempo que emula un <span class="highlight">crecimiento 100% natural</span>. Anti‑baneos y completamente adaptado a los ciclos de Google.</p>
                 </div>
             </div>
             <div style="max-width:900px;margin:40px auto 0;background:var(--card);border-radius:var(--radius);padding:30px 24px;border:1px solid var(--border);text-align:center;animation:fadeUp 1s ease-out 0.6s both;">
@@ -1205,14 +557,14 @@
             <h3>¿Listo para impulsar tu negocio?</h3>
             <p>Reseñas auténticas que construyen reputación y atraen clientes.</p>
             <p class="hours">🟢 Atención al cliente: Disponible 24/7</p>
-            <button class="btn-chat" onclick="openChatWidget()">💬 Chat</button>
+            <button class="btn-chat" onclick="requireAuthThen(openChatWidget)">💬 Chat</button>
         </div>
     </section>
 
     <!-- ===== CHAT WIDGET ===== -->
     <div class="chat-widget" id="chatWidget">
-        <button class="mis-chats-btn" id="misChatsBtn" onclick="openMisChats()">💬 Mis chats</button>
-        <button class="chat-bubble-btn" id="chatBubbleBtn" onclick="openChatWidget()" title="Abrir chat">💬</button>
+        <button class="mis-chats-btn" id="misChatsBtn" onclick="requireAuthThen(openMisChats)">💬 Mis chats</button>
+        <button class="chat-bubble-btn" id="chatBubbleBtn" onclick="requireAuthThen(openChatWidget)" title="Abrir chat">💬</button>
     </div>
 
     <div class="chat-window" id="chatWindow">
@@ -1251,6 +603,7 @@
 
     <!-- ===== FIREBASE ===== -->
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
 
     <script>
@@ -1268,18 +621,85 @@
             };
             firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
+            const auth = firebase.auth();
 
             // ============ ESTADO ============
             let currentChatId = null;
-            let userId = localStorage.getItem('rexis_user_id');
-            if (!userId) {
-                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                localStorage.setItem('rexis_user_id', userId);
-            }
+            let userId = null;
+            let currentUser = null;
             let isAdminLoggedIn = false;
-            let isAdminMode = false; // Solo true mientras el admin tiene un chat abierto desde el panel
+            let isAdminMode = false;
             let adminChatListener = null;
             let currentChatListener = null;
+
+            // ============ GOOGLE AUTH ============
+            function updateGoogleButton() {
+                const btn = document.getElementById('googleAuthBtn');
+                const text = document.getElementById('googleBtnText');
+                if (currentUser) {
+                    btn.classList.add('logged');
+                    btn.innerHTML = `
+                        <img class="avatar" src="${currentUser.photoURL || 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg'}" alt="avatar" />
+                        <span>${currentUser.displayName ? currentUser.displayName.split(' ')[0] : 'Usuario'}</span>
+                        <span class="logout-x">✕</span>
+                    `;
+                } else {
+                    btn.classList.remove('logged');
+                    btn.innerHTML = `
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+                        <span id="googleBtnText">Iniciar con Google</span>
+                    `;
+                }
+            }
+
+            window.handleGoogleAuth = function() {
+                if (currentUser) {
+                    // Cerrar sesión
+                    auth.signOut().then(() => {
+                        currentUser = null;
+                        userId = null;
+                        localStorage.removeItem('rexis_user_id');
+                        updateGoogleButton();
+                        closeChatWidget();
+                    });
+                } else {
+                    const provider = new firebase.auth.GoogleAuthProvider();
+                    auth.signInWithPopup(provider)
+                        .then((result) => {
+                            currentUser = result.user;
+                            userId = currentUser.uid;
+                            localStorage.setItem('rexis_user_id', userId);
+                            updateGoogleButton();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            if (error.code !== 'auth/popup-closed-by-user') {
+                                alert('Error al iniciar sesión con Google. Inténtalo de nuevo.');
+                            }
+                        });
+                }
+            };
+
+            // Escuchar cambios de autenticación
+            auth.onAuthStateChanged((user) => {
+                currentUser = user;
+                if (user) {
+                    userId = user.uid;
+                    localStorage.setItem('rexis_user_id', userId);
+                } else {
+                    userId = null;
+                }
+                updateGoogleButton();
+            });
+
+            // Función que obliga a estar logueado
+            window.requireAuthThen = function(callback) {
+                if (!currentUser) {
+                    alert('Debes iniciar sesión con Google para poder usar el chat.\n\nHaz clic en el botón “Iniciar con Google” de la esquina superior derecha.');
+                    return;
+                }
+                if (typeof callback === 'function') callback();
+            };
 
             // ============ GRÁFICA ============
             function drawChart() {
@@ -1300,50 +720,47 @@
                 const plotW = w - padding.left - padding.right;
                 const plotH = h - padding.top - padding.bottom;
 
-                const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-                const data = [12, 14, 16, 19, 28, 42, 68, 95, 130, 155, 178, 210];
+                const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+                const data = [12,14,16,19,28,42,68,95,130,155,178,210];
                 const maxVal = 240;
 
                 ctx.fillStyle = '#1a1a1a';
-                ctx.fillRect(0, 0, w, h);
+                ctx.fillRect(0,0,w,h);
 
                 ctx.strokeStyle = '#333';
                 ctx.lineWidth = 1;
-                const gridLines = 6;
-                for (let i = 0; i <= gridLines; i++) {
-                    const y = padding.top + (plotH / gridLines) * i;
+                for (let i = 0; i <= 6; i++) {
+                    const y = padding.top + (plotH / 6) * i;
                     ctx.beginPath();
                     ctx.moveTo(padding.left, y);
                     ctx.lineTo(w - padding.right, y);
                     ctx.stroke();
-                    const val = Math.round(maxVal - (maxVal / gridLines) * i);
                     ctx.fillStyle = '#aaa';
                     ctx.font = '11px Inter, sans-serif';
-                    ctx.fillText(val, padding.left - 45, y + 4);
+                    ctx.fillText(Math.round(maxVal - (maxVal/6)*i), padding.left - 45, y + 4);
                 }
 
-                months.forEach((m, i) => {
-                    const x = padding.left + (plotW / (months.length - 1)) * i;
+                months.forEach((m,i) => {
+                    const x = padding.left + (plotW/(months.length-1))*i;
                     ctx.fillStyle = '#aaa';
                     ctx.font = '11px Inter, sans-serif';
-                    ctx.fillText(m, x - 14, h - padding.bottom + 30);
+                    ctx.fillText(m, x-14, h - padding.bottom + 30);
                 });
 
                 const gradient = ctx.createLinearGradient(0, padding.top, 0, h - padding.bottom);
-                gradient.addColorStop(0, 'rgba(255,255,255,0.15)');
-                gradient.addColorStop(0.5, 'rgba(200,200,200,0.08)');
-                gradient.addColorStop(1, 'rgba(255,255,255,0.02)');
+                gradient.addColorStop(0,'rgba(255,255,255,0.15)');
+                gradient.addColorStop(0.5,'rgba(200,200,200,0.08)');
+                gradient.addColorStop(1,'rgba(255,255,255,0.02)');
+
+                const points = data.map((val,i) => ({
+                    x: padding.left + (plotW/(data.length-1))*i,
+                    y: padding.top + plotH - (val/maxVal)*plotH
+                }));
 
                 ctx.beginPath();
-                const points = data.map((val, i) => {
-                    const x = padding.left + (plotW / (data.length - 1)) * i;
-                    const y = padding.top + plotH - (val / maxVal) * plotH;
-                    return { x, y };
-                });
-
                 ctx.moveTo(points[0].x, h - padding.bottom);
                 points.forEach(p => ctx.lineTo(p.x, p.y));
-                ctx.lineTo(points[points.length - 1].x, h - padding.bottom);
+                ctx.lineTo(points[points.length-1].x, h - padding.bottom);
                 ctx.closePath();
                 ctx.fillStyle = gradient;
                 ctx.fill();
@@ -1351,38 +768,31 @@
                 ctx.beginPath();
                 ctx.moveTo(points[0].x, points[0].y);
                 for (let i = 1; i < points.length; i++) {
-                    const cp1x = points[i - 1].x + (points[i].x - points[i - 1].x) / 3;
-                    const cp2x = points[i].x - (points[i].x - points[i - 1].x) / 3;
-                    ctx.bezierCurveTo(cp1x, points[i - 1].y, cp2x, points[i].y, points[i].x, points[i].y);
+                    const cp1x = points[i-1].x + (points[i].x - points[i-1].x)/3;
+                    const cp2x = points[i].x - (points[i].x - points[i-1].x)/3;
+                    ctx.bezierCurveTo(cp1x, points[i-1].y, cp2x, points[i].y, points[i].x, points[i].y);
                 }
-                ctx.strokeStyle = '#ffffff';
+                ctx.strokeStyle = '#fff';
                 ctx.lineWidth = 3;
                 ctx.shadowColor = 'rgba(255,255,255,0.3)';
                 ctx.shadowBlur = 18;
                 ctx.stroke();
                 ctx.shadowBlur = 0;
 
-                points.forEach((p, i) => {
+                points.forEach((p,i) => {
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
-                    ctx.fillStyle = i === points.length - 1 ? '#cccccc' : '#ffffff';
+                    ctx.arc(p.x, p.y, 6, 0, Math.PI*2);
+                    ctx.fillStyle = i === points.length-1 ? '#ccc' : '#fff';
                     ctx.fill();
                     ctx.strokeStyle = '#000';
                     ctx.lineWidth = 1.5;
                     ctx.stroke();
-                    if (i === points.length - 1) {
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, 14, 0, Math.PI * 2);
-                        ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-                        ctx.lineWidth = 2;
-                        ctx.stroke();
-                    }
                 });
 
-                const last = points[points.length - 1];
+                const last = points[points.length-1];
                 ctx.fillStyle = '#fff';
                 ctx.font = 'bold 14px Inter, sans-serif';
-                ctx.fillText('↑ ' + data[data.length - 1] + ' clientes', last.x - 40, last.y - 20);
+                ctx.fillText('↑ ' + data[data.length-1] + ' clientes', last.x - 40, last.y - 20);
             }
 
             window.addEventListener('load', () => {
@@ -1392,47 +802,26 @@
             });
             window.addEventListener('resize', drawChart);
 
-            // ============ SCROLL ANIMATIONS ============
             function setupScrollAnimations() {
                 const elements = document.querySelectorAll('.animate-on-scroll');
                 const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                        }
-                    });
+                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
                 }, { threshold: 0.15 });
                 elements.forEach(el => observer.observe(el));
-                window.addEventListener('scroll', () => {
-                    elements.forEach(el => {
-                        const rect = el.getBoundingClientRect();
-                        if (rect.top < window.innerHeight - 50 && rect.bottom > 0) {
-                            el.classList.add('visible');
-                        }
-                    });
-                });
-                setTimeout(() => {
-                    elements.forEach(el => {
-                        const rect = el.getBoundingClientRect();
-                        if (rect.top < window.innerHeight - 50 && rect.bottom > 0) {
-                            el.classList.add('visible');
-                        }
-                    });
-                }, 200);
             }
 
             // ============ RESEÑAS ============
             const allReviews = [
-                { stars: 5, text: 'Increíble servicio. Mi negocio pasó de 10 a 80 reseñas en Google en solo dos semanas. Las ventas aumentaron un 40%.', author: 'María García', date: '12/06/2026' },
-                { stars: 5, text: 'Muy profesionales. Las reseñas parecen totalmente reales y han mejorado mi reputación online de forma impresionante.', author: 'Carlos López', date: '03/06/2026' },
-                { stars: 5, text: 'Contraté el pack de 30 reseñas y los resultados fueron espectaculares. Mi competencia se ha quedado atrás. Totalmente recomendado.', author: 'Ana Martínez', date: '28/05/2026' },
-                { stars: 4, text: 'Buen servicio, las reseñas llegaron en el plazo acordado. Solo echo en falta un poco más de variedad en los perfiles, pero en general excelente.', author: 'David Torres', date: '20/05/2026' },
-                { stars: 5, text: 'Rexis ha transformado mi pequeña empresa. Antes no aparecía en búsquedas y ahora estoy en el top 3 de Google Maps.', author: 'Laura Sánchez', date: '15/05/2026' },
-                { stars: 5, text: 'El mejor servicio de reseñas que he probado. Atención al cliente impecable y resultados visibles en menos de una semana.', author: 'Javier Ruiz', date: '08/05/2026' },
-                { stars: 4, text: 'Muy contento con el pack de 50 reseñas. El informe detallado que incluyen es muy útil para entender el impacto.', author: 'Sofía Díaz', date: '01/05/2026' },
-                { stars: 5, text: 'Invertí 124,99€ y he recuperado la inversión multiplicada por 10. Mis clientes ahora confían mucho más en mi negocio.', author: 'Pablo Fernández', date: '22/04/2026' },
-                { stars: 5, text: 'Servicio rápido, eficaz y discreto. Las reseñas con foto son un plus increíble. Volveré a contratar sin duda.', author: 'Elena Gómez', date: '15/04/2026' },
-                { stars: 5, text: 'Rexis Reviews es el secreto mejor guardado de los negocios exitosos. Profesionalidad absoluta y resultados garantizados.', author: 'Miguel Ángel Castro', date: '05/04/2026' },
+                { stars:5, text:'Increíble servicio. Mi negocio pasó de 10 a 80 reseñas en Google en solo dos semanas. Las ventas aumentaron un 40%.', author:'María García', date:'12/06/2026' },
+                { stars:5, text:'Muy profesionales. Las reseñas parecen totalmente reales y han mejorado mi reputación online de forma impresionante.', author:'Carlos López', date:'03/06/2026' },
+                { stars:5, text:'Contraté el pack de 30 reseñas y los resultados fueron espectaculares. Mi competencia se ha quedado atrás. Totalmente recomendado.', author:'Ana Martínez', date:'28/05/2026' },
+                { stars:4, text:'Buen servicio, las reseñas llegaron en el plazo acordado. Solo echo en falta un poco más de variedad en los perfiles, pero en general excelente.', author:'David Torres', date:'20/05/2026' },
+                { stars:5, text:'Rexis ha transformado mi pequeña empresa. Antes no aparecía en búsquedas y ahora estoy en el top 3 de Google Maps.', author:'Laura Sánchez', date:'15/05/2026' },
+                { stars:5, text:'El mejor servicio de reseñas que he probado. Atención al cliente impecable y resultados visibles en menos de una semana.', author:'Javier Ruiz', date:'08/05/2026' },
+                { stars:4, text:'Muy contento con el pack de 50 reseñas. El informe detallado que incluyen es muy útil para entender el impacto.', author:'Sofía Díaz', date:'01/05/2026' },
+                { stars:5, text:'Invertí 124,99€ y he recuperado la inversión multiplicada por 10. Mis clientes ahora confían mucho más en mi negocio.', author:'Pablo Fernández', date:'22/04/2026' },
+                { stars:5, text:'Servicio rápido, eficaz y discreto. Las reseñas con foto son un plus increíble. Volveré a contratar sin duda.', author:'Elena Gómez', date:'15/04/2026' },
+                { stars:5, text:'Rexis Reviews es el secreto mejor guardado de los negocios exitosos. Profesionalidad absoluta y resultados garantizados.', author:'Miguel Ángel Castro', date:'05/04/2026' },
             ];
 
             function renderReviews(showAll = false) {
@@ -1453,26 +842,16 @@
                     `;
                     container.appendChild(card);
                 });
-                if (showAll || allReviews.length <= 3) {
-                    btn.style.display = 'none';
-                } else {
-                    btn.style.display = 'block';
-                    btn.textContent = 'Ver más reseñas';
-                }
+                btn.style.display = (showAll || allReviews.length <= 3) ? 'none' : 'block';
+                btn.textContent = showAll ? 'Ver menos' : 'Ver más reseñas';
                 setupScrollAnimations();
             }
 
             window.toggleReviews = function() {
                 const btn = document.getElementById('btnVerMas');
-                if (btn.textContent.includes('Ver más')) {
-                    renderReviews(true);
-                    btn.textContent = 'Ver menos';
-                } else {
-                    renderReviews(false);
-                    btn.textContent = 'Ver más reseñas';
-                }
+                if (btn.textContent.includes('Ver más')) renderReviews(true);
+                else renderReviews(false);
             };
-
             renderReviews(false);
 
             // ============ CHAT ============
@@ -1490,7 +869,6 @@
             }
 
             function openChatWidget() {
-                // Si no estamos en modo admin, forzamos modo usuario
                 if (!isAdminMode) {
                     isAdminMode = false;
                     document.getElementById('chatInput').placeholder = 'Escribe tu mensaje...';
@@ -1512,8 +890,7 @@
                             lastTimestamp: 0,
                             nickname: ''
                         });
-                        const autoMsgRef = db.ref('chats/' + currentChatId + '/messages').push();
-                        autoMsgRef.set({
+                        db.ref('chats/' + currentChatId + '/messages').push().set({
                             sender: 'admin',
                             type: 'text',
                             text: '🟢 Atención al cliente disponible, te atenderán lo más rápido posible. ¿En qué podemos ayudarte?',
@@ -1521,9 +898,7 @@
                         });
                     } else {
                         const meta = snap.val();
-                        if (meta.nickname) {
-                            document.getElementById('chatHeaderTitle').textContent = meta.nickname;
-                        }
+                        if (meta.nickname) document.getElementById('chatHeaderTitle').textContent = meta.nickname;
                     }
                 });
                 document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
@@ -1531,7 +906,6 @@
 
             function closeChatWidget() {
                 document.getElementById('chatWindow').classList.remove('open');
-                // CRÍTICO: al cerrar siempre salimos del modo admin
                 isAdminMode = false;
                 document.getElementById('chatInput').placeholder = 'Escribe tu mensaje...';
                 document.getElementById('chatHeaderTitle').textContent = 'Chat en vivo';
@@ -1549,9 +923,7 @@
                 messagesDiv.innerHTML = '<div class="chat-auto-msg">🟢 Atención al cliente disponible, te atenderán lo más rápido posible.</div>';
                 currentChatListener = db.ref('chats/' + chatId + '/messages').orderByChild('timestamp').on('child_added', snap => {
                     const msg = snap.val();
-                    if (msg) {
-                        appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', false);
-                    }
+                    if (msg) appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', false);
                 });
                 currentChatId = chatId;
                 localStorage.setItem('rexis_current_chat_id', chatId);
@@ -1580,20 +952,15 @@
                 }
 
                 messagesDiv.appendChild(wrapper);
-                if (scroll) {
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                }
-                if (messagesDiv.querySelectorAll('.chat-message').length > 0 && autoMsg) {
-                    autoMsg.style.display = 'none';
-                }
+                if (scroll) messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                if (messagesDiv.querySelectorAll('.chat-message').length > 0 && autoMsg) autoMsg.style.display = 'none';
             }
 
-            // Enviar imagen
             window.sendImage = function() {
+                if (!currentUser) return requireAuthThen(() => {});
                 const fileInput = document.getElementById('imageInput');
                 const file = fileInput.files[0];
                 if (!file) return;
-
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const imageData = e.target.result;
@@ -1602,10 +969,8 @@
                         localStorage.setItem('rexis_current_chat_id', currentChatId);
                         listenToChat(currentChatId);
                     }
-                    // Solo enviamos como admin si estamos explícitamente en modo admin
                     const senderType = isAdminMode ? 'admin' : 'user';
-                    const msgRef = db.ref('chats/' + currentChatId + '/messages').push();
-                    msgRef.set({
+                    db.ref('chats/' + currentChatId + '/messages').push().set({
                         sender: senderType,
                         type: 'image',
                         imageData: imageData,
@@ -1618,14 +983,13 @@
                             status: 'active'
                         });
                     });
-                    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
-                    document.getElementById('misChatsBtn').classList.add('visible');
                     fileInput.value = '';
                 };
                 reader.readAsDataURL(file);
             };
 
             window.sendMessage = function() {
+                if (!currentUser) return requireAuthThen(() => {});
                 const input = document.getElementById('chatInput');
                 const text = input.value.trim();
                 if (!text) return;
@@ -1634,10 +998,8 @@
                     localStorage.setItem('rexis_current_chat_id', currentChatId);
                     listenToChat(currentChatId);
                 }
-                // Solo enviamos como admin si estamos explícitamente en modo admin
                 const senderType = isAdminMode ? 'admin' : 'user';
-                const msgRef = db.ref('chats/' + currentChatId + '/messages').push();
-                msgRef.set({
+                db.ref('chats/' + currentChatId + '/messages').push().set({
                     sender: senderType,
                     type: 'text',
                     text: text,
@@ -1651,15 +1013,13 @@
                     });
                 });
                 input.value = '';
-                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
                 document.getElementById('misChatsBtn').classList.add('visible');
             };
 
-            window.openMisChats = function() {
-                openChatWidget();
-            };
+            window.openMisChats = function() { openChatWidget(); };
 
             document.getElementById('attachBtn').addEventListener('click', () => {
+                if (!currentUser) return requireAuthThen(() => {});
                 document.getElementById('imageInput').click();
             });
 
@@ -1685,8 +1045,7 @@
             });
 
             window.verifyAdminPassword = function() {
-                const pass = adminPasswordInput.value.trim();
-                if (pass === 'bajialex') {
+                if (adminPasswordInput.value.trim() === 'bajialex') {
                     isAdminLoggedIn = true;
                     adminPasswordSection.style.display = 'none';
                     adminChatsList.style.display = 'block';
@@ -1706,9 +1065,7 @@
             };
 
             function loadAdminChats() {
-                if (adminChatListener) {
-                    db.ref('chats').off('value', adminChatListener);
-                }
+                if (adminChatListener) db.ref('chats').off('value', adminChatListener);
                 adminChatListener = db.ref('chats').on('value', snap => {
                     adminChatsContainer.innerHTML = '';
                     const chats = snap.val();
@@ -1717,19 +1074,17 @@
                         return;
                     }
                     Object.keys(chats).forEach(chatId => {
-                        const chat = chats[chatId];
-                        const meta = chat.meta || {};
+                        const meta = chats[chatId].meta || {};
                         if (meta.status === 'resolved' || meta.status === 'archived') return;
-                        const status = meta.status || 'active';
                         const nickname = meta.nickname || '';
-                        const displayName = nickname ? nickname : ('Chat: ' + chatId.substring(0, 18) + '...');
+                        const displayName = nickname || ('Chat: ' + chatId.substring(0,18) + '...');
                         const item = document.createElement('div');
                         item.className = 'admin-chat-item';
                         item.innerHTML = `
                             <div class="info">
                                 <strong>${displayName}</strong>
-                                ${nickname ? '<div class="nickname">ID: ' + chatId.substring(0, 22) + '...</div>' : ''}
-                                <span>Usuario: ${(meta.userId||'N/A').substring(0,18)}... | Estado: ${status} | Último: ${meta.lastMessage ? meta.lastMessage.substring(0,35) : 'N/A'}</span>
+                                ${nickname ? '<div class="nickname">ID: ' + chatId.substring(0,22) + '...</div>' : ''}
+                                <span>Usuario: ${(meta.userId||'N/A').substring(0,18)}... | Estado: ${meta.status||'active'} | Último: ${meta.lastMessage ? meta.lastMessage.substring(0,35) : 'N/A'}</span>
                             </div>
                             <div class="actions">
                                 <button class="btn-open-chat" onclick="adminOpenChat('${chatId}')">Abrir</button>
@@ -1739,7 +1094,7 @@
                                 <button class="btn-delete" onclick="adminDeleteChat('${chatId}')">Borrar</button>
                             </div>
                             <div class="rename-row" id="renameRow_${chatId}">
-                                <input type="text" id="renameInput_${chatId}" placeholder="Escribe un apodo para este chat..." value="${nickname.replace(/"/g, '&quot;')}" />
+                                <input type="text" id="renameInput_${chatId}" placeholder="Apodo del chat..." value="${nickname.replace(/"/g,'&quot;')}" />
                                 <button class="btn-open-chat" onclick="saveNickname('${chatId}')">Guardar</button>
                                 <button class="btn-archive" onclick="toggleRename('${chatId}')">Cancelar</button>
                             </div>
@@ -1756,29 +1111,19 @@
                 const row = document.getElementById('renameRow_' + chatId);
                 if (row) {
                     row.classList.toggle('visible');
-                    if (row.classList.contains('visible')) {
-                        document.getElementById('renameInput_' + chatId).focus();
-                    }
+                    if (row.classList.contains('visible')) document.getElementById('renameInput_' + chatId).focus();
                 }
             };
 
             window.saveNickname = function(chatId) {
-                const input = document.getElementById('renameInput_' + chatId);
-                const nickname = (input.value || '').trim();
-                db.ref('chats/' + chatId + '/meta').update({
-                    nickname: nickname
-                }).then(() => {
-                    // Si el chat está abierto actualmente, actualizamos el título
-                    if (currentChatId === chatId) {
-                        document.getElementById('chatHeaderTitle').textContent = nickname || 'Chat en vivo';
-                    }
-                    // Recargamos la lista
+                const nickname = (document.getElementById('renameInput_' + chatId).value || '').trim();
+                db.ref('chats/' + chatId + '/meta').update({ nickname }).then(() => {
+                    if (currentChatId === chatId) document.getElementById('chatHeaderTitle').textContent = nickname || 'Chat en vivo';
                     loadAdminChats();
                 });
             };
 
             window.adminOpenChat = function(chatId) {
-                // Activamos el modo admin SOLO para este chat
                 isAdminMode = true;
                 adminModal.classList.remove('open');
                 if (adminChatListener) {
@@ -1795,7 +1140,7 @@
                 db.ref('chats/' + chatId + '/meta').once('value').then(snap => {
                     if (!snap.exists()) {
                         db.ref('chats/' + chatId + '/meta').set({
-                            userId: userId,
+                            userId: userId || 'admin',
                             status: 'active',
                             createdAt: firebase.database.ServerValue.TIMESTAMP,
                             lastMessage: '',
@@ -1804,76 +1149,38 @@
                         });
                     } else {
                         const meta = snap.val();
-                        if (meta.nickname) {
-                            document.getElementById('chatHeaderTitle').textContent = meta.nickname + ' (Admin)';
-                        } else {
-                            document.getElementById('chatHeaderTitle').textContent = 'Chat (Admin)';
-                        }
+                        document.getElementById('chatHeaderTitle').textContent = (meta.nickname || 'Chat') + ' (Admin)';
                     }
                 });
-                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
             };
 
             window.adminResolveChat = function(chatId) {
                 if (confirm('¿Marcar este chat como resuelto?')) {
                     db.ref('chats/' + chatId + '/meta').update({ status: 'resolved' });
-                    loadAdminChats();
                 }
             };
-
             window.adminArchiveChat = function(chatId) {
                 if (confirm('¿Archivar este chat?')) {
                     db.ref('chats/' + chatId + '/meta').update({ status: 'archived' });
-                    loadAdminChats();
                 }
             };
-
             window.adminDeleteChat = function(chatId) {
                 if (confirm('¿Eliminar este chat permanentemente?')) {
                     db.ref('chats/' + chatId).remove().then(() => {
-                        loadAdminChats();
                         if (currentChatId === chatId) {
                             closeChatWidget();
                             localStorage.removeItem('rexis_current_chat_id');
-                            document.getElementById('chatMessages').innerHTML =
-                                '<div class="chat-auto-msg">🟢 Atención al cliente disponible, te atenderán lo más rápido posible.</div>';
                         }
                     });
                 }
             };
 
-            adminModal.addEventListener('click', function(e) {
-                if (e.target === adminModal) {
-                    closeAdminPanel();
-                }
-            });
+            adminModal.addEventListener('click', e => { if (e.target === adminModal) closeAdminPanel(); });
 
-            // ============ UTILIDADES ============
-            window.scrollToTop = function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
+            window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
             window.openChatWidget = openChatWidget;
             window.closeChatWidget = closeChatWidget;
             window.openMisChats = openMisChats;
-
-            // Cargar chat previo
-            window.addEventListener('load', () => {
-                const savedChatId = localStorage.getItem('rexis_current_chat_id');
-                if (savedChatId) {
-                    document.getElementById('misChatsBtn').classList.add('visible');
-                }
-                db.ref('chats').orderByChild('meta/userId').equalTo(userId).once('value').then(snap => {
-                    if (snap.exists()) {
-                        document.getElementById('misChatsBtn').classList.add('visible');
-                        const chats = snap.val();
-                        const activeChat = Object.keys(chats).find(k => chats[k].meta && chats[k].meta.status === 'active');
-                        if (activeChat && !savedChatId) {
-                            localStorage.setItem('rexis_current_chat_id', activeChat);
-                        }
-                    }
-                });
-            });
 
         })();
     </script>
