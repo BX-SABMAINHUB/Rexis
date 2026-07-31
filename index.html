@@ -48,12 +48,8 @@
         }
 
         @keyframes bodyFade {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         body::before,
@@ -80,12 +76,8 @@
             animation-delay: 5s;
         }
         @keyframes floatBg {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(80px, -60px);
-            }
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, -60px); }
         }
 
         .container {
@@ -114,14 +106,8 @@
             animation: slideNav 0.7s ease-out;
         }
         @keyframes slideNav {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .nav-logo {
             font-size: 2rem;
@@ -136,17 +122,9 @@
             animation: logoAnim 0.7s ease-out 0.2s both;
         }
         @keyframes logoAnim {
-            0% {
-                transform: scale(0.6);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0.6); opacity: 0; }
+            60% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
         }
         .nav-logo:hover {
             filter: brightness(1.3);
@@ -224,13 +202,8 @@
             animation: fadeUp 1s ease-out 0.45s both, pulseHero 3s ease-in-out infinite;
         }
         @keyframes pulseHero {
-            0%,
-            100% {
-                box-shadow: 0 8px 30px rgba(255, 255, 255, 0.12);
-            }
-            50% {
-                box-shadow: 0 12px 44px rgba(255, 255, 255, 0.25);
-            }
+            0%, 100% { box-shadow: 0 8px 30px rgba(255, 255, 255, 0.12); }
+            50% { box-shadow: 0 12px 44px rgba(255, 255, 255, 0.25); }
         }
         .hero-btn:hover {
             background: #dddddd;
@@ -239,14 +212,8 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== NUEVA SECCIÓN: INGENIERÍA REPUTACIÓN ===== */
@@ -283,15 +250,9 @@
             overflow: hidden;
             animation: fadeUp 0.8s ease-out both;
         }
-        .reputation-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-        .reputation-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .reputation-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
+        .reputation-card:nth-child(1) { animation-delay: 0.1s; }
+        .reputation-card:nth-child(2) { animation-delay: 0.2s; }
+        .reputation-card:nth-child(3) { animation-delay: 0.3s; }
         .reputation-card:hover {
             transform: translateY(-8px);
             border-color: var(--lightgray);
@@ -307,9 +268,7 @@
             margin-bottom: 8px;
             transition: opacity 0.3s;
         }
-        .reputation-card:hover .step-number {
-            opacity: 0.5;
-        }
+        .reputation-card:hover .step-number { opacity: 0.5; }
         .reputation-card h3 {
             font-size: 1.6rem;
             font-weight: 700;
@@ -393,15 +352,9 @@
             overflow: hidden;
             animation: fadeUp 0.8s ease-out both;
         }
-        .plan-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-        .plan-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .plan-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
+        .plan-card:nth-child(1) { animation-delay: 0.1s; }
+        .plan-card:nth-child(2) { animation-delay: 0.2s; }
+        .plan-card:nth-child(3) { animation-delay: 0.3s; }
         .plan-card:hover {
             transform: translateY(-6px);
             border-color: var(--lightgray);
@@ -460,9 +413,7 @@
             color: var(--text2);
             transition: color 0.3s;
         }
-        .plan-features li:hover {
-            color: #fff;
-        }
+        .plan-features li:hover { color: #fff; }
         .plan-features li::before {
             content: '✓ ';
             color: var(--lightgray);
@@ -492,9 +443,7 @@
             background: var(--lightgray);
             color: #000;
         }
-        .plan-cta.gold:hover {
-            background: #cccccc;
-        }
+        .plan-cta.gold:hover { background: #cccccc; }
 
         .custom-plan {
             text-align: center;
@@ -531,14 +480,8 @@
             animation: pricePulse 3s ease-in-out infinite;
         }
         @keyframes pricePulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.06);
-                color: var(--lightgray);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); color: var(--lightgray); }
         }
 
         /* ===== RESEÑAS ===== */
@@ -558,15 +501,9 @@
             box-shadow: var(--shadow);
             animation: fadeUp 0.8s ease-out both;
         }
-        .review-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-        .review-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .review-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.2s; }
+        .review-card:nth-child(3) { animation-delay: 0.3s; }
         .review-card:hover {
             border-color: var(--lightgray);
             box-shadow: var(--shadow-glow);
@@ -693,13 +630,8 @@
             animation: floatBubble 3s ease-in-out infinite;
         }
         @keyframes floatBubble {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-6px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
         .chat-bubble-btn:hover {
             transform: scale(1.08);
@@ -748,18 +680,10 @@
             overflow: hidden;
             animation: slideChat 0.3s ease-out;
         }
-        .chat-window.open {
-            display: flex;
-        }
+        .chat-window.open { display: flex; }
         @keyframes slideChat {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         .chat-header {
             background: var(--surface);
@@ -824,15 +748,10 @@
             box-shadow: 0 0 8px rgba(255,255,255,0.1);
         }
         @keyframes msgIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        /* ADMIN = fondo oscuro / negro */
         .chat-message.admin {
             align-self: flex-start;
             background: #2a2a2a;
@@ -843,6 +762,7 @@
             background: #3a3a3a;
             color: #fff;
         }
+        /* USUARIO = fondo blanco / claro */
         .chat-message.user {
             align-self: flex-end;
             background: #e0e0e0;
@@ -952,12 +872,8 @@
             animation: modalFade 0.3s ease-out;
         }
         @keyframes modalFade {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .admin-panel {
             background: var(--bg2);
@@ -965,21 +881,15 @@
             border-radius: var(--radius);
             padding: 30px;
             width: 95vw;
-            max-width: 750px;
+            max-width: 800px;
             max-height: 85vh;
             overflow-y: auto;
             box-shadow: var(--shadow-glow);
             animation: slideUpModal 0.4s ease-out;
         }
         @keyframes slideUpModal {
-            from {
-                transform: translateY(50px) scale(0.92);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
+            from { transform: translateY(50px) scale(0.92); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
         .admin-panel h2 {
             color: #fff;
@@ -1001,51 +911,79 @@
             transition: var(--transition);
             animation: fadeUp 0.4s ease-out both;
         }
-        .admin-chat-item:hover {
-            border-color: var(--lightgray);
-        }
+        .admin-chat-item:hover { border-color: var(--lightgray); }
         .admin-chat-item .info {
             flex: 1;
-            min-width: 150px;
+            min-width: 180px;
         }
         .admin-chat-item .info strong {
             color: #fff;
             display: block;
+            font-size: 0.95rem;
+        }
+        .admin-chat-item .info .nickname {
+            color: var(--lightgray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 2px;
         }
         .admin-chat-item .info span {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text2);
+            display: block;
+            margin-top: 4px;
+        }
+        .admin-chat-item .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
         }
         .admin-chat-item button {
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 50px;
             border: none;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             letter-spacing: 0.3px;
             transition: var(--transition);
-            margin: 2px;
         }
-        .btn-resolve {
-            background: var(--lightgray);
-            color: #000;
-        }
-        .btn-archive {
-            background: #555;
+        .btn-resolve { background: var(--lightgray); color: #000; }
+        .btn-archive { background: #555; color: #fff; }
+        .btn-delete { background: #777; color: #fff; }
+        .btn-open-chat { background: var(--white); color: #000; }
+        .btn-rename {
+            background: #444;
             color: #fff;
-        }
-        .btn-delete {
-            background: #777;
-            color: #fff;
-        }
-        .btn-open-chat {
-            background: var(--white);
-            color: #000;
+            border: 1px solid var(--border);
         }
         .admin-chat-item button:hover {
             filter: brightness(1.2);
             transform: scale(1.04);
+        }
+        .rename-row {
+            display: none;
+            width: 100%;
+            margin-top: 8px;
+            gap: 8px;
+            align-items: center;
+        }
+        .rename-row.visible { display: flex; }
+        .rename-row input {
+            flex: 1;
+            padding: 8px 14px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 0.85rem;
+            outline: none;
+        }
+        .rename-row input:focus { border-color: var(--lightgray); }
+        .rename-row button {
+            padding: 8px 16px !important;
+            font-size: 0.8rem !important;
         }
         .admin-close {
             display: block;
@@ -1081,9 +1019,7 @@
             outline: none;
             transition: var(--transition);
         }
-        .admin-password-input input:focus {
-            border-color: var(--lightgray);
-        }
+        .admin-password-input input:focus { border-color: var(--lightgray); }
         .admin-password-input button {
             padding: 10px 24px;
             border-radius: 50px;
@@ -1101,12 +1037,8 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.4rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
+            .hero-title { font-size: 2.4rem; }
+            .hero-subtitle { font-size: 1.1rem; }
             .chat-window {
                 width: 95vw;
                 right: 2.5vw;
@@ -1118,23 +1050,15 @@
                 flex-wrap: wrap;
                 gap: 6px;
             }
-            .nav-logo {
-                font-size: 1.4rem;
-            }
+            .nav-logo { font-size: 1.4rem; }
             .nav-cta {
                 padding: 8px 16px;
                 font-size: 0.8rem;
             }
             .plans-grid,
-            .reviews-grid {
-                grid-template-columns: 1fr;
-            }
-            .reputation-grid {
-                grid-template-columns: 1fr;
-            }
-            .reputation-title {
-                font-size: 2rem;
-            }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .reputation-grid { grid-template-columns: 1fr; }
+            .reputation-title { font-size: 2rem; }
         }
 
         /* ===== SCROLL ANIMATIONS ===== */
@@ -1173,7 +1097,6 @@
         <div class="container">
             <h2 class="reputation-title">Ingeniería detrás de tu reputación.</h2>
             <div class="reputation-grid">
-                <!-- 1 -->
                 <div class="reputation-card animate-on-scroll">
                     <div class="step-number">01</div>
                     <h3>Perfiles Reales Geolocalizados</h3>
@@ -1181,7 +1104,6 @@
                         Cuentas con historial verificable y actividad orgánica (Local Guides) para que Google asimile cada reseña con <span class="highlight">máxima autoridad</span> y credibilidad.
                     </p>
                 </div>
-                <!-- 2 -->
                 <div class="reputation-card animate-on-scroll">
                     <div class="step-number">02</div>
                     <h3>Redacción con SEO Local</h3>
@@ -1189,7 +1111,6 @@
                         Integramos palabras clave sutiles y naturales (ej. <span class="highlight">"el mejor servicio de la ciudad"</span>) para potenciar tu posicionamiento en buscadores y atraer tráfico cualificado.
                     </p>
                 </div>
-                <!-- 3 -->
                 <div class="reputation-card animate-on-scroll">
                     <div class="step-number">03</div>
                     <h3>Goteo Algorítmico Inteligente</h3>
@@ -1198,7 +1119,6 @@
                     </p>
                 </div>
             </div>
-            <!-- Texto adicional como en la imagen (perfiles, precios, etc.) -->
             <div style="max-width:900px;margin:40px auto 0;background:var(--card);border-radius:var(--radius);padding:30px 24px;border:1px solid var(--border);text-align:center;animation:fadeUp 1s ease-out 0.6s both;">
                 <p style="color:var(--text2);font-size:1.05rem;letter-spacing:0.5px;">
                     <span style="color:#fff;font-weight:600;">Experiencia razonable</span> · Precios desde <span style="color:#fff;font-weight:700;">2,5€</span> por reseña · 
@@ -1297,7 +1217,7 @@
 
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
-            <span>Chat en vivo</span>
+            <span id="chatHeaderTitle">Chat en vivo</span>
             <button class="chat-close" onclick="closeChatWidget()">✕</button>
         </div>
         <div class="chat-messages" id="chatMessages">
@@ -1330,10 +1250,8 @@
     </div>
 
     <!-- ===== FIREBASE ===== -->
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js">
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
 
     <script>
         (function() {
@@ -1359,6 +1277,7 @@
                 localStorage.setItem('rexis_user_id', userId);
             }
             let isAdminLoggedIn = false;
+            let isAdminMode = false; // Solo true mientras el admin tiene un chat abierto desde el panel
             let adminChatListener = null;
             let currentChatListener = null;
 
@@ -1504,34 +1423,16 @@
 
             // ============ RESEÑAS ============
             const allReviews = [
-                { stars: 5, text: 'Increíble servicio. Mi negocio pasó de 10 a 80 reseñas en Google en solo dos semanas. Las ventas aumentaron un 40%.',
-                    author: 'María García', date: '12/06/2026' },
-                { stars: 5,
-                    text: 'Muy profesionales. Las reseñas parecen totalmente reales y han mejorado mi reputación online de forma impresionante.',
-                    author: 'Carlos López', date: '03/06/2026' },
-                { stars: 5,
-                    text: 'Contraté el pack de 30 reseñas y los resultados fueron espectaculares. Mi competencia se ha quedado atrás. Totalmente recomendado.',
-                    author: 'Ana Martínez', date: '28/05/2026' },
-                { stars: 4,
-                    text: 'Buen servicio, las reseñas llegaron en el plazo acordado. Solo echo en falta un poco más de variedad en los perfiles, pero en general excelente.',
-                    author: 'David Torres', date: '20/05/2026' },
-                { stars: 5,
-                    text: 'Rexis ha transformado mi pequeña empresa. Antes no aparecía en búsquedas y ahora estoy en el top 3 de Google Maps.',
-                    author: 'Laura Sánchez', date: '15/05/2026' },
-                { stars: 5,
-                    text: 'El mejor servicio de reseñas que he probado. Atención al cliente impecable y resultados visibles en menos de una semana.',
-                    author: 'Javier Ruiz', date: '08/05/2026' },
-                { stars: 4,
-                    text: 'Muy contento con el pack de 50 reseñas. El informe detallado que incluyen es muy útil para entender el impacto.',
-                    author: 'Sofía Díaz', date: '01/05/2026' },
-                { stars: 5,
-                    text: 'Invertí 124,99€ y he recuperado la inversión multiplicada por 10. Mis clientes ahora confían mucho más en mi negocio.',
-                    author: 'Pablo Fernández', date: '22/04/2026' },
-                { stars: 5, text: 'Servicio rápido, eficaz y discreto. Las reseñas con foto son un plus increíble. Volveré a contratar sin duda.',
-                    author: 'Elena Gómez', date: '15/04/2026' },
-                { stars: 5,
-                    text: 'Rexis Reviews es el secreto mejor guardado de los negocios exitosos. Profesionalidad absoluta y resultados garantizados.',
-                    author: 'Miguel Ángel Castro', date: '05/04/2026' },
+                { stars: 5, text: 'Increíble servicio. Mi negocio pasó de 10 a 80 reseñas en Google en solo dos semanas. Las ventas aumentaron un 40%.', author: 'María García', date: '12/06/2026' },
+                { stars: 5, text: 'Muy profesionales. Las reseñas parecen totalmente reales y han mejorado mi reputación online de forma impresionante.', author: 'Carlos López', date: '03/06/2026' },
+                { stars: 5, text: 'Contraté el pack de 30 reseñas y los resultados fueron espectaculares. Mi competencia se ha quedado atrás. Totalmente recomendado.', author: 'Ana Martínez', date: '28/05/2026' },
+                { stars: 4, text: 'Buen servicio, las reseñas llegaron en el plazo acordado. Solo echo en falta un poco más de variedad en los perfiles, pero en general excelente.', author: 'David Torres', date: '20/05/2026' },
+                { stars: 5, text: 'Rexis ha transformado mi pequeña empresa. Antes no aparecía en búsquedas y ahora estoy en el top 3 de Google Maps.', author: 'Laura Sánchez', date: '15/05/2026' },
+                { stars: 5, text: 'El mejor servicio de reseñas que he probado. Atención al cliente impecable y resultados visibles en menos de una semana.', author: 'Javier Ruiz', date: '08/05/2026' },
+                { stars: 4, text: 'Muy contento con el pack de 50 reseñas. El informe detallado que incluyen es muy útil para entender el impacto.', author: 'Sofía Díaz', date: '01/05/2026' },
+                { stars: 5, text: 'Invertí 124,99€ y he recuperado la inversión multiplicada por 10. Mis clientes ahora confían mucho más en mi negocio.', author: 'Pablo Fernández', date: '22/04/2026' },
+                { stars: 5, text: 'Servicio rápido, eficaz y discreto. Las reseñas con foto son un plus increíble. Volveré a contratar sin duda.', author: 'Elena Gómez', date: '15/04/2026' },
+                { stars: 5, text: 'Rexis Reviews es el secreto mejor guardado de los negocios exitosos. Profesionalidad absoluta y resultados garantizados.', author: 'Miguel Ángel Castro', date: '05/04/2026' },
             ];
 
             function renderReviews(showAll = false) {
@@ -1545,11 +1446,11 @@
                     card.className = 'review-card animate-on-scroll';
                     card.style.animationDelay = (index * 0.1) + 's';
                     card.innerHTML = `
-                <div class="review-stars">${starsStr}</div>
-                <p class="review-text">"${r.text}"</p>
-                <div class="review-author">${r.author}</div>
-                <div class="review-date">${r.date}</div>
-              `;
+                        <div class="review-stars">${starsStr}</div>
+                        <p class="review-text">"${r.text}"</p>
+                        <div class="review-author">${r.author}</div>
+                        <div class="review-date">${r.date}</div>
+                    `;
                     container.appendChild(card);
                 });
                 if (showAll || allReviews.length <= 3) {
@@ -1589,6 +1490,12 @@
             }
 
             function openChatWidget() {
+                // Si no estamos en modo admin, forzamos modo usuario
+                if (!isAdminMode) {
+                    isAdminMode = false;
+                    document.getElementById('chatInput').placeholder = 'Escribe tu mensaje...';
+                    document.getElementById('chatHeaderTitle').textContent = 'Chat en vivo';
+                }
                 const chatWindow = document.getElementById('chatWindow');
                 chatWindow.classList.add('open');
                 currentChatId = getOrCreateChatId();
@@ -1602,7 +1509,8 @@
                             status: 'active',
                             createdAt: firebase.database.ServerValue.TIMESTAMP,
                             lastMessage: '',
-                            lastTimestamp: 0
+                            lastTimestamp: 0,
+                            nickname: ''
                         });
                         const autoMsgRef = db.ref('chats/' + currentChatId + '/messages').push();
                         autoMsgRef.set({
@@ -1611,14 +1519,22 @@
                             text: '🟢 Atención al cliente disponible, te atenderán lo más rápido posible. ¿En qué podemos ayudarte?',
                             timestamp: firebase.database.ServerValue.TIMESTAMP
                         });
+                    } else {
+                        const meta = snap.val();
+                        if (meta.nickname) {
+                            document.getElementById('chatHeaderTitle').textContent = meta.nickname;
+                        }
                     }
                 });
-                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages')
-                .scrollHeight;
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
             }
 
             function closeChatWidget() {
                 document.getElementById('chatWindow').classList.remove('open');
+                // CRÍTICO: al cerrar siempre salimos del modo admin
+                isAdminMode = false;
+                document.getElementById('chatInput').placeholder = 'Escribe tu mensaje...';
+                document.getElementById('chatHeaderTitle').textContent = 'Chat en vivo';
                 if (currentChatListener) {
                     db.ref('chats/' + currentChatId + '/messages').off('child_added', currentChatListener);
                     currentChatListener = null;
@@ -1630,16 +1546,13 @@
                     db.ref('chats/' + currentChatId + '/messages').off('child_added', currentChatListener);
                 }
                 const messagesDiv = document.getElementById('chatMessages');
-                messagesDiv.innerHTML =
-                    '<div class="chat-auto-msg">🟢 Atención al cliente disponible, te atenderán lo más rápido posible.</div>';
-                currentChatListener = db.ref('chats/' + chatId + '/messages').orderByChild('timestamp').on(
-                    'child_added',
-                    snap => {
-                        const msg = snap.val();
-                        if (msg) {
-                            appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', false);
-                        }
-                    });
+                messagesDiv.innerHTML = '<div class="chat-auto-msg">🟢 Atención al cliente disponible, te atenderán lo más rápido posible.</div>';
+                currentChatListener = db.ref('chats/' + chatId + '/messages').orderByChild('timestamp').on('child_added', snap => {
+                    const msg = snap.val();
+                    if (msg) {
+                        appendMessageToChat(msg.sender, msg.type || 'text', msg.text || '', msg.imageData || '', false);
+                    }
+                });
                 currentChatId = chatId;
                 localStorage.setItem('rexis_current_chat_id', chatId);
             }
@@ -1649,12 +1562,12 @@
                 const autoMsg = messagesDiv.querySelector('.chat-auto-msg');
                 const wrapper = document.createElement('div');
                 wrapper.className = 'chat-message ' + (sender === 'admin' ? 'admin' : 'user');
-                
+
                 const label = document.createElement('span');
                 label.className = 'sender-label';
                 label.textContent = sender === 'admin' ? 'Admin' : 'Tú';
                 wrapper.appendChild(label);
-                
+
                 if (type === 'image' && imageData) {
                     const img = document.createElement('img');
                     img.src = imageData;
@@ -1665,7 +1578,7 @@
                     content.textContent = text;
                     wrapper.appendChild(content);
                 }
-                
+
                 messagesDiv.appendChild(wrapper);
                 if (scroll) {
                     messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -1675,12 +1588,12 @@
                 }
             }
 
-            // Función para enviar imagen
+            // Enviar imagen
             window.sendImage = function() {
                 const fileInput = document.getElementById('imageInput');
                 const file = fileInput.files[0];
                 if (!file) return;
-                
+
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const imageData = e.target.result;
@@ -1689,7 +1602,8 @@
                         localStorage.setItem('rexis_current_chat_id', currentChatId);
                         listenToChat(currentChatId);
                     }
-                    const senderType = (window._adminSendingAsAdmin) ? 'admin' : 'user';
+                    // Solo enviamos como admin si estamos explícitamente en modo admin
+                    const senderType = isAdminMode ? 'admin' : 'user';
                     const msgRef = db.ref('chats/' + currentChatId + '/messages').push();
                     msgRef.set({
                         sender: senderType,
@@ -1720,8 +1634,9 @@
                     localStorage.setItem('rexis_current_chat_id', currentChatId);
                     listenToChat(currentChatId);
                 }
+                // Solo enviamos como admin si estamos explícitamente en modo admin
+                const senderType = isAdminMode ? 'admin' : 'user';
                 const msgRef = db.ref('chats/' + currentChatId + '/messages').push();
-                const senderType = (window._adminSendingAsAdmin) ? 'admin' : 'user';
                 msgRef.set({
                     sender: senderType,
                     type: 'text',
@@ -1736,9 +1651,7 @@
                     });
                 });
                 input.value = '';
-                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages')
-                    .scrollHeight;
-                window._adminSendingAsAdmin = false;
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
                 document.getElementById('misChatsBtn').classList.add('visible');
             };
 
@@ -1746,7 +1659,6 @@
                 openChatWidget();
             };
 
-            // Evento para el botón de adjuntar
             document.getElementById('attachBtn').addEventListener('click', () => {
                 document.getElementById('imageInput').click();
             });
@@ -1801,8 +1713,7 @@
                     adminChatsContainer.innerHTML = '';
                     const chats = snap.val();
                     if (!chats) {
-                        adminChatsContainer.innerHTML =
-                            '<p style="color:#b0b0b0;">No hay chats activos.</p>';
+                        adminChatsContainer.innerHTML = '<p style="color:#b0b0b0;">No hay chats activos.</p>';
                         return;
                     }
                     Object.keys(chats).forEach(chatId => {
@@ -1810,31 +1721,65 @@
                         const meta = chat.meta || {};
                         if (meta.status === 'resolved' || meta.status === 'archived') return;
                         const status = meta.status || 'active';
+                        const nickname = meta.nickname || '';
+                        const displayName = nickname ? nickname : ('Chat: ' + chatId.substring(0, 18) + '...');
                         const item = document.createElement('div');
                         item.className = 'admin-chat-item';
                         item.innerHTML = `
-                  <div class="info">
-                    <strong>Chat: ${chatId.substring(0,20)}...</strong>
-                    <span>Usuario: ${(meta.userId||'N/A').substring(0,18)}... | Estado: ${status} | Último: ${meta.lastMessage ? meta.lastMessage.substring(0,40) : 'N/A'}</span>
-                  </div>
-                  <div>
-                    <button class="btn-open-chat" onclick="adminOpenChat('${chatId}')">Abrir</button>
-                    <button class="btn-resolve" onclick="adminResolveChat('${chatId}')">Resolver</button>
-                    <button class="btn-archive" onclick="adminArchiveChat('${chatId}')">Archivar</button>
-                    <button class="btn-delete" onclick="adminDeleteChat('${chatId}')">Borrar</button>
-                  </div>
-                `;
+                            <div class="info">
+                                <strong>${displayName}</strong>
+                                ${nickname ? '<div class="nickname">ID: ' + chatId.substring(0, 22) + '...</div>' : ''}
+                                <span>Usuario: ${(meta.userId||'N/A').substring(0,18)}... | Estado: ${status} | Último: ${meta.lastMessage ? meta.lastMessage.substring(0,35) : 'N/A'}</span>
+                            </div>
+                            <div class="actions">
+                                <button class="btn-open-chat" onclick="adminOpenChat('${chatId}')">Abrir</button>
+                                <button class="btn-rename" onclick="toggleRename('${chatId}')">Renombrar</button>
+                                <button class="btn-resolve" onclick="adminResolveChat('${chatId}')">Resolver</button>
+                                <button class="btn-archive" onclick="adminArchiveChat('${chatId}')">Archivar</button>
+                                <button class="btn-delete" onclick="adminDeleteChat('${chatId}')">Borrar</button>
+                            </div>
+                            <div class="rename-row" id="renameRow_${chatId}">
+                                <input type="text" id="renameInput_${chatId}" placeholder="Escribe un apodo para este chat..." value="${nickname.replace(/"/g, '&quot;')}" />
+                                <button class="btn-open-chat" onclick="saveNickname('${chatId}')">Guardar</button>
+                                <button class="btn-archive" onclick="toggleRename('${chatId}')">Cancelar</button>
+                            </div>
+                        `;
                         adminChatsContainer.appendChild(item);
                     });
                     if (adminChatsContainer.children.length === 0) {
-                        adminChatsContainer.innerHTML =
-                            '<p style="color:#b0b0b0;">No hay chats activos.</p>';
+                        adminChatsContainer.innerHTML = '<p style="color:#b0b0b0;">No hay chats activos.</p>';
                     }
                 });
             }
 
+            window.toggleRename = function(chatId) {
+                const row = document.getElementById('renameRow_' + chatId);
+                if (row) {
+                    row.classList.toggle('visible');
+                    if (row.classList.contains('visible')) {
+                        document.getElementById('renameInput_' + chatId).focus();
+                    }
+                }
+            };
+
+            window.saveNickname = function(chatId) {
+                const input = document.getElementById('renameInput_' + chatId);
+                const nickname = (input.value || '').trim();
+                db.ref('chats/' + chatId + '/meta').update({
+                    nickname: nickname
+                }).then(() => {
+                    // Si el chat está abierto actualmente, actualizamos el título
+                    if (currentChatId === chatId) {
+                        document.getElementById('chatHeaderTitle').textContent = nickname || 'Chat en vivo';
+                    }
+                    // Recargamos la lista
+                    loadAdminChats();
+                });
+            };
+
             window.adminOpenChat = function(chatId) {
-                window._adminSendingAsAdmin = true;
+                // Activamos el modo admin SOLO para este chat
+                isAdminMode = true;
                 adminModal.classList.remove('open');
                 if (adminChatListener) {
                     db.ref('chats').off('value', adminChatListener);
@@ -1844,7 +1789,9 @@
                 localStorage.setItem('rexis_current_chat_id', chatId);
                 document.getElementById('misChatsBtn').classList.add('visible');
                 document.getElementById('chatWindow').classList.add('open');
+                document.getElementById('chatInput').placeholder = 'Escribe como Administrador...';
                 listenToChat(chatId);
+
                 db.ref('chats/' + chatId + '/meta').once('value').then(snap => {
                     if (!snap.exists()) {
                         db.ref('chats/' + chatId + '/meta').set({
@@ -1852,19 +1799,19 @@
                             status: 'active',
                             createdAt: firebase.database.ServerValue.TIMESTAMP,
                             lastMessage: '',
-                            lastTimestamp: 0
+                            lastTimestamp: 0,
+                            nickname: ''
                         });
+                    } else {
+                        const meta = snap.val();
+                        if (meta.nickname) {
+                            document.getElementById('chatHeaderTitle').textContent = meta.nickname + ' (Admin)';
+                        } else {
+                            document.getElementById('chatHeaderTitle').textContent = 'Chat (Admin)';
+                        }
                     }
                 });
-                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages')
-                    .scrollHeight;
-                document.getElementById('chatInput').placeholder = 'Escribe como Administrador...';
-                const origClose = closeChatWidget;
-                closeChatWidget = function() {
-                    window._adminSendingAsAdmin = false;
-                    document.getElementById('chatInput').placeholder = 'Escribe tu mensaje...';
-                    origClose();
-                };
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
             };
 
             window.adminResolveChat = function(chatId) {
@@ -1920,8 +1867,7 @@
                     if (snap.exists()) {
                         document.getElementById('misChatsBtn').classList.add('visible');
                         const chats = snap.val();
-                        const activeChat = Object.keys(chats).find(k => chats[k].meta && chats[k].meta
-                            .status === 'active');
+                        const activeChat = Object.keys(chats).find(k => chats[k].meta && chats[k].meta.status === 'active');
                         if (activeChat && !savedChatId) {
                             localStorage.setItem('rexis_current_chat_id', activeChat);
                         }
